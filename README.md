@@ -58,9 +58,14 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   grunt make:project_name
   ```
 
-- While you're developing your mockup
+- While you're developing your mockup, run this task to build the project and watch for changes (usually you run this only once)
   ```
   grunt build:project_name
+  ```
+
+- If you want to build in Development mode your mockup but you don't want to watch it for changes
+  ```
+  grunt rebuild:project_name
   ```
 
 - When you're finished and you're ready to deploy, but want to test it first
