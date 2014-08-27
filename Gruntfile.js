@@ -274,7 +274,9 @@ module.exports = function(grunt) {
                         },
                         files: [
                             'Gruntfile.js',
-                            getFullPath() + '**/*'
+                            getFullPath() + '**/*.swig',
+                            getFullPath() + '**/*.scss',
+                            getFullPath() + '**/*.js'
                         ],
                         tasks: [
                         	'rebuild:' + app.name
