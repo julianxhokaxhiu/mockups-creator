@@ -20,7 +20,7 @@ This was built because of my needs to always kickstart a mockup in the fastest w
 
 ## Generator
 
-It will create HTML files based on your `wwwPath` inside the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json) configuration files. Once you'll run the related `grunt` task, you'll get your output in that folder.
+It will create HTML files based on your `wwwPath` inside the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json#L2) configuration files. Once you'll run the related `grunt` task, you'll get your output in that folder.
 
 # Requirements
 
