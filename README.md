@@ -65,3 +65,10 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   ```
   grunt deploy:project_name
   ```
+
+# Reference
+
+- `_apptpl` folder is used as a starter template when you run `grunt make:project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
+- `rsc` folder is used for resources like images, and other things that will be copied 1:1 to the `wwwPath` folder.
+- `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
+- `fonts` folder is used when you want to autogenerate webfonts based on `ttf` or `otf` desktop fonts. When you'll place some files here you'll get all known webfonts formats + a CSS file that will be minified with your SCSS file that exists in `tpl` folder. This will give a big speed boost to work with custom fonts without needing to create the CSS manually or with external tools.
