@@ -19,6 +19,7 @@
     "grunt-rsync": "*",
     "grunt-sass": "*",
     "grunt-tasty-swig": "*",
+    "grunt-webfont": "*",
     "grunt-yui-compressor": "*",
     "node.extend": "*"
   },

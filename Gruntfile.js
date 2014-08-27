@@ -52,6 +52,12 @@ module.exports = function(grunt) {
         getWebFontsPath = function() {
         	return app.path + '/webfonts/';
         },
+        getIconsPath = function() {
+        	return app.path + '/icons/';
+        },
+        getWebIconsPath = function() {
+        	return app.path + '/webicons/';
+        },
         getAppConfig = function() {
             var ret = {
                 name: app.name,
@@ -110,15 +116,26 @@ module.exports = function(grunt) {
             app.jsConfigFiles[ app.wwwPath + app.jsMin ] = app.jsExternalLibraries.concat( [ getFullPath() + app.jsPath ] );
             app.fontConfigFiles = {}
             app.fontConfigFiles[ getWebFontsPath() ] = [
-            	getFontsPath() + '/*.otf',
-				getFontsPath() + '/*.ttf'
+            	getFontsPath() + '*.otf',
+				getFontsPath() + '*.ttf'
             ];
             app.webFontConfigFiles = {};
-            app.webFontConfigFiles[ getFullPath('css') + '98_webfonts.css' ] = [
-            	getWebFontsPath() + '/*.css'
+            app.webFontConfigFiles[ getFullPath('css') + '97_webfonts.css' ] = [
+            	getWebFontsPath() + '*.css'
             ];
-            app.webFontConfigFiles[ getFullPath('css-print') + '98_webfonts.css' ] = [
-            	getWebFontsPath() + '/*.css'
+            app.webFontConfigFiles[ getFullPath('css-print') + '97_webfonts.css' ] = [
+            	getWebFontsPath() + '*.css'
+            ];
+            app.iconsConfigFiles = {}
+            app.iconsConfigFiles[ getWebIconsPath() ] = [
+            	getIconsPath() + '*.svg'
+            ];
+            app.webIconsConfigFiles = {};
+            app.webIconsConfigFiles[ getFullPath('css') + '98_webicons.css' ] = [
+            	getWebIconsPath() + '*.css'
+            ];
+            app.webIconsConfigFiles[ getFullPath('css-print') + '98_webicons.css' ] = [
+            	getWebIconsPath() + '*.css'
             ];
 
             // Extend with app configuration
@@ -141,6 +158,9 @@ module.exports = function(grunt) {
                     ],
                     webfonts: [
                     	getWebFontsPath()
+                    ],
+                    webicons: [
+                    	getWebIconsPath()
                     ]
                 },
                 tasty_swig: {
@@ -170,10 +190,22 @@ module.exports = function(grunt) {
 						files: app.fontConfigFiles
 					}
 				},
+				webfont: {
+					icons: {
+						src: getIconsPath() + '*.svg',
+						dest: getWebIconsPath(),
+						options: {
+							font: app.name + 'icons'
+						}
+					}
+				},
                 concat: {
                 	webfonts: {
                 		files: app.webFontConfigFiles
                 	},
+                	webicons: {
+                		files: app.webIconsConfigFiles
+                	}
                     css: {
                         filter: 'isFile',
                         src: getFullPath( app.cssPath ),
@@ -249,6 +281,14 @@ module.exports = function(grunt) {
                         		src: ['**/*.{ttf,woff,eot,svg,otf}'],
                         		dest: app.wwwPath + '/fonts/'
                         	},
+                        	// The project Webicons
+                        	{
+                        		expand: true,
+                        		flatten: true,
+                        		cwd: getWebIconsPath(),
+                        		src: ['**/*.{ttf,woff,eot,svg,otf}'],
+                        		dest: app.wwwPath + '/fonts/'
+                        	},
                         	// The project resource files
 	                        {
 	                            expand: true,
@@ -310,6 +350,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-rsync');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-fontgen');
+    grunt.loadNpmTasks('grunt-webfont');
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
         grunt.warn('No project name specified.\n\nAvailable commands:\n"build:project_name"\n"deploy:project_name"\n"make:project_name"\n');
@@ -333,7 +374,9 @@ module.exports = function(grunt) {
             grunt.task.run([
                 'clean',
                 'fontgen',
+                'webfont',
                 'concat:webfonts',
+                'concat:webicons',
                 'sass:build',
                 'concat:js',
                 'tasty_swig',
@@ -354,7 +397,9 @@ module.exports = function(grunt) {
             grunt.task.run([
                 'clean',
                 'fontgen',
+                'webfont',
                 'concat:webfonts',
+                'concat:webicons',
                 'sass:deploy',
                 'concat',
                 'autoprefixer',

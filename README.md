@@ -16,6 +16,7 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 ## Backend
 - [Swig Templates](http://paularmstrong.github.io/swig/) ( just like Twig, but for Javascript )
 - Web Fonts generator ( just place your TTF or OTF fonts in the fonts folder )
+- Web Icons generator based on SVG files ( just place them in the icons folder )
 - SCSS ( with map files support so you can see from your inspector directly the SCSS file reference )
 - Autoprefixing for CSS rules ( this give's you the freedom to not use anymore -webkit-, -moz-, etc. )
 - [YUI](http://yui.github.io/yuicompressor/) compressor for CSS
@@ -33,14 +34,12 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 
 To run this you need these binaries to be available in your system
 
-1. `fontforge`
-2. `ttf2eot`
-3. `batik-ttf2svg`
+1. `fontforge` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) and [grunt-webfont](https://github.com/sapegin/grunt-webfont) )
+2. `ttf2eot` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) )
+3. `batik-ttf2svg` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) )
 
 To test if they're working just type these names in your terminal and if they're working you're good to go.
 Otherwise you should look at your OS documentation on how to get these binaries working.
-
-**Notice:** These binaries are required by the [grunt-fontgen](https://github.com/agentk/grunt-fontgen) package and not directly by me.
 
 # How to use
 
