@@ -22,6 +22,7 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 - [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
 
 ## Frontend
+- jQuery 2.x ( or 1.x for older browsers )
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
 
