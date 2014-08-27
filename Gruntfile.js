@@ -274,7 +274,7 @@ module.exports = function(grunt) {
                         },
                         files: [
                             'Gruntfile.js',
-                            getFullPath('**/*')
+                            getFullPath() + '**/*'
                         ],
                         tasks: [
                         	'rebuild:' + app.name
