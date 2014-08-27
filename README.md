@@ -7,6 +7,10 @@ A NodeJS App that creates static HTML mockups using Grunt
 
 This was built because of my needs to always kickstart a mockup in the fastest way as possible. So, this will bring a very flexible but powerful mockup generator based on various technologies.
 
+## What I will get from this
+
+It will create HTML files based on your `wwwPath` inside the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json#L2) configuration files. Once you'll run the related `grunt` task, you'll get your output in that folder.
+
 # Features
 
 ## Backend
@@ -21,9 +25,8 @@ This was built because of my needs to always kickstart a mockup in the fastest w
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
 
-## Generator
-
-It will create HTML files based on your `wwwPath` inside the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json#L2) configuration files. Once you'll run the related `grunt` task, you'll get your output in that folder.
+## Deploy
+- [Rsync](http://en.wikipedia.org/wiki/Rsync)
 
 # Requirements
 
