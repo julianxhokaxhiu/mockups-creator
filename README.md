@@ -13,6 +13,9 @@ This was built because of my needs to always kickstart a mockup in the fastest w
 - [Swig Templates](http://paularmstrong.github.io/swig/) ( just like Twig, but for Javascript )
 - Web Fonts generator ( just place your TTF or OTF fonts in the fonts folder )
 - SCSS ( with map files support so you can see from your inspector directly the SCSS file reference )
+- Autoprefixing for CSS rules ( this give's you the freedom to not use anymore -webkit-, -moz-, etc. )
+- [YUI](http://yui.github.io/yuicompressor/) compressor for CSS
+- [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
 
 ## Frontend
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
