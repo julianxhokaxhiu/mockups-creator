@@ -1,6 +1,10 @@
 {
   "name": "mockups-creator",
   "description": "A NodeJS App that creates static HTML mockups using Grunt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/julianxhokaxhiu/mockups-creator.git"
+  },
   "version": "0.0.1",
   "dependencies": {
     "grunt": "*",
