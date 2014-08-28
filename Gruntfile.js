@@ -205,7 +205,7 @@ module.exports = function(grunt) {
                 	},
                 	webicons: {
                 		files: app.webIconsConfigFiles
-                	}
+                	},
                     css: {
                         filter: 'isFile',
                         src: getFullPath( app.cssPath ),
