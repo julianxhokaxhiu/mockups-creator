@@ -383,7 +383,8 @@ module.exports = function(grunt) {
                 'copy:deploy',
                 'copy:build',
                 'clean:mapFiles',
-                'clean:webfonts'
+                'clean:webfonts',
+                'clean:webicons'
             ]);
         } else
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
@@ -408,7 +409,8 @@ module.exports = function(grunt) {
                 'tasty_swig',
                 'copy:deploy',
                 'clean:mapFiles',
-                'clean:webfonts'
+                'clean:webfonts',
+                'clean:webicons'
             ]);
         } else
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
