@@ -195,6 +195,7 @@ module.exports = function(grunt) {
 						src: getIconsPath() + '*.svg',
 						dest: getWebIconsPath(),
 						options: {
+                            relativeFontPath: '../fonts/',
 							font: app.name + '-icons',
                             templateOptions: {
                                 baseClass: app.name + '-icon',
