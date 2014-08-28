@@ -195,7 +195,12 @@ module.exports = function(grunt) {
 						src: getIconsPath() + '*.svg',
 						dest: getWebIconsPath(),
 						options: {
-							font: app.name + '-icons'
+							font: app.name + '-icons',
+                            templateOptions: {
+                                baseClass: app.name + '-icon',
+                                classPrefix: app.name + '-icon-',
+                                mixinPrefix: app.name + '-icon-'
+                            }
 						}
 					}
 				},
@@ -308,18 +313,37 @@ module.exports = function(grunt) {
                     }
                 },
                 watch: {
-                    build: {
+                    html: {
                         options: {
                             livereload: app.liveReloadPort
                         },
                         files: [
-                            'Gruntfile.js',
                             getFullPath() + '**/*.swig',
+                        ],
+                        tasks: [
+                        	'rebuild:' + app.name + ':html'
+                        ]
+                    },
+                    css: {
+                        options: {
+                            livereload: app.liveReloadPort
+                        },
+                        files: [
                             getFullPath() + '**/*.scss',
+                        ],
+                        tasks: [
+                            'rebuild:' + app.name + ':css'
+                        ]
+                    },
+                    js: {
+                        options: {
+                            livereload: app.liveReloadPort
+                        },
+                        files: [
                             getFullPath() + '**/*.js'
                         ],
                         tasks: [
-                        	'rebuild:' + app.name
+                            'rebuild:' + app.name + ':js'
                         ]
                     }
                 },
@@ -356,8 +380,11 @@ module.exports = function(grunt) {
         grunt.warn('No project name specified.\n\nAvailable commands:\n"build:project_name"\n"deploy:project_name"\n"make:project_name"\n');
     });
 
-    grunt.registerTask('build', 'Build a mockup and watch for file modifications', function(name) {
+    grunt.registerTask('build', 'Build a mockup and watch for file modifications', function ( name ) {
         if (appExists(name)) {
+            setAppConfig(this.name, {
+                name: name
+            });
             grunt.task.run([
                 'rebuild:' + name,
                 'watch'
@@ -366,15 +393,13 @@ module.exports = function(grunt) {
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
-    grunt.registerTask('rebuild', 'Build a mockup without watching for file modifications', function(name){
+    grunt.registerTask('watchbuild', 'Build a mockup without regenerating fonts and icons', function ( name ) {
         if (appExists(name)) {
             setAppConfig(this.name, {
                 name: name
             });
             grunt.task.run([
                 'clean',
-                'fontgen',
-                'webfont',
                 'concat:webfonts',
                 'concat:webicons',
                 'sass:build',
@@ -390,7 +415,56 @@ module.exports = function(grunt) {
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
-    grunt.registerTask('build_deploy', 'Build a mockup ready for deployment sync', function(name) {
+    grunt.registerTask('rebuild', 'Build a mockup without watching for file modifications', function ( name, watchTask ) {
+        if (appExists(name)) {
+            var tasks = [];
+            if ( watchTask === undefined ) watchTask = 'all';
+
+            if ( watchTask == 'all' ) {
+                tasks = tasks.concat([
+                    'clean',
+                    'fontgen',
+                    'webfont',
+                    'concat:webfonts',
+                    'concat:webicons',
+                    'sass:build',
+                    'concat:js',
+                    'tasty_swig',
+                    'copy:deploy',
+                    'copy:build',
+                    'clean:mapFiles',
+                    'clean:webfonts',
+                    'clean:webicons'
+                ]);
+            } else if ( watchTask == 'html' ) {
+                tasks = tasks.concat([
+                    'tasty_swig',
+                    'copy:deploy',
+                    'copy:build'
+                ]);
+            } else if ( watchTask == 'css' ) {
+                tasks = tasks.concat([
+                    'sass:build',
+                    'copy:deploy',
+                    'copy:build'
+                ]);
+            } else if ( watchTask == 'js' ) {
+                tasks = tasks.concat([
+                    'concat:js',
+                    'copy:deploy',
+                    'copy:build'
+                ]);
+            }
+
+            setAppConfig(this.name, {
+                name: name
+            });
+            grunt.task.run(tasks);
+        } else
+            grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
+    });
+
+    grunt.registerTask('build_deploy', 'Build a mockup ready for deployment sync', function ( name ) {
         if (appExists(name)) {
             setAppConfig(this.name, {
                 name: name
@@ -417,7 +491,7 @@ module.exports = function(grunt) {
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
-    grunt.registerTask('deploy', 'Deploy a mockup to the Mockups Server', function(name) {
+    grunt.registerTask('deploy', 'Deploy a mockup to the Mockups Server', function ( name ) {
     	if (appExists(name)) {
             setAppConfig(this.name, {
                 name: name
@@ -430,7 +504,7 @@ module.exports = function(grunt) {
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
-    grunt.registerTask('make', 'Create a new mockup folder based on a template', function(name) {
+    grunt.registerTask('make', 'Create a new mockup folder based on a template', function ( name ) {
         if (!appExists(name)) {
             setAppConfig(this.name, {
                 name: name
