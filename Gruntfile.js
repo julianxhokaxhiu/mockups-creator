@@ -195,7 +195,7 @@ module.exports = function(grunt) {
 						src: getIconsPath() + '*.svg',
 						dest: getWebIconsPath(),
 						options: {
-							font: app.name + 'icons'
+							font: app.name + '-icons'
 						}
 					}
 				},
