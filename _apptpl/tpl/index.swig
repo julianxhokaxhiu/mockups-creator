@@ -1,4 +1,4 @@
-{% include '_core/html.swig' %}
+{% extends '_core/html.swig' %}
 {% block content %}
 Hello World!
 {% endblock %}
