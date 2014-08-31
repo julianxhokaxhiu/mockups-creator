@@ -1,5 +1,5 @@
 {
-	"wwwPath": "www/",
+	"wwwPath": "../public_html/",
 	"liveReloadPort": 35729,
 	"liveReloadHost" : "localhost:35729",
 	"deployPath": "/var/www/",
