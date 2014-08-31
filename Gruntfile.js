@@ -150,7 +150,7 @@ module.exports = function(grunt) {
                         force: true
                     },
                     www: [
-                        app.wwwPath,
+                        app.wwwPath + '*',
                     ],
                     mapFiles: [
                     	getFullPath('css') + '/*.map',
