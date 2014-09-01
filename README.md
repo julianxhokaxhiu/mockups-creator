@@ -15,6 +15,7 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 
 ## Backend
 - [Swig Templates](http://paularmstrong.github.io/swig/) ( just like Twig, but for Javascript )
+- Template custom data customizable via JSON file ( see [data.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/data.json) file )
 - Web Fonts generator ( just place your TTF or OTF fonts in the fonts folder )
 - Web Icons generator based on SVG files ( just place them in the icons folder )
 - SCSS ( with map files support so you can see from your inspector directly the SCSS file reference )
