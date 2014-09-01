@@ -86,6 +86,9 @@ module.exports = function(grunt) {
                 ret.jsFiles = [app.jsMin];
             }
 
+            if ( grunt.file.exists( app.path + '/data.json' ) )
+                ret.data = grunt.file.readJSON( app.path + '/data.json' );
+
             return ret;
         },
         setAppConfig = function(command, config) {
