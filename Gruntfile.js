@@ -323,6 +323,7 @@ module.exports = function(grunt) {
                         },
                         files: [
                             getFullPath() + '**/*.swig',
+                            app.path + '/data.json'
                         ],
                         tasks: [
                         	'rebuild:' + app.name + ':html'
