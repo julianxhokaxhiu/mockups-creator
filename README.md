@@ -22,6 +22,7 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 - Autoprefixing for CSS rules ( this give's you the freedom to not use anymore -webkit-, -moz-, etc. )
 - [YUI](http://yui.github.io/yuicompressor/) compressor for CSS
 - [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
+- Auto-rebuild + Live Reload when editing swig, scss or js files
 
 ## Frontend
 - jQuery 2.x ( or 1.x for older browsers )
