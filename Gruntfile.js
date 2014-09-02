@@ -77,7 +77,7 @@ module.exports = function(grunt) {
                 ]
             };
 
-            if (app.command == 'deploy') {
+            if ( ['build_deploy','deploy'].indexOf(app.command) > -1 ) {
                 ret.liveReloadHost = false;
                 ret.cssFiles = {
                     'screen': [app.cssMin],
@@ -298,6 +298,15 @@ module.exports = function(grunt) {
                         		src: ['**/*.{ttf,woff,eot,svg,otf}'],
                         		dest: app.wwwPath + '/fonts/'
                         	},
+                        	// Webicons sass generated file
+                        	{
+                                expand: true,
+                                cwd: getWebIconsPath(),
+                                src: [
+                                    '*.scss'
+                                ],
+                                dest: getFullPath('scss')
+                            },
                         	// The project resource files
 	                        {
 	                            expand: true,
@@ -477,7 +486,7 @@ module.exports = function(grunt) {
                 'fontgen',
                 'webfont',
                 'concat:webfonts',
-                'concat:webicons',
+                'copy:deploy',
                 'sass:deploy',
                 'concat:css',
                 'concat:cssPrint',
@@ -485,7 +494,6 @@ module.exports = function(grunt) {
                 'cssmin',
                 'closurecompiler',
                 'tasty_swig',
-                'copy:deploy',
                 'clean:mapFiles',
                 'clean:webfonts',
                 'clean:webicons'
