@@ -123,22 +123,15 @@ module.exports = function(grunt) {
 				getFontsPath() + '*.ttf'
             ];
             app.webFontConfigFiles = {};
-            app.webFontConfigFiles[ getFullPath('css') + '97_webfonts.css' ] = [
+            app.webFontConfigFiles[ getFullPath('css') + '98_webfonts.css' ] = [
             	getWebFontsPath() + '*.css'
             ];
-            app.webFontConfigFiles[ getFullPath('css-print') + '97_webfonts.css' ] = [
+            app.webFontConfigFiles[ getFullPath('css-print') + '98_webfonts.css' ] = [
             	getWebFontsPath() + '*.css'
             ];
             app.iconsConfigFiles = {}
             app.iconsConfigFiles[ getWebIconsPath() ] = [
             	getIconsPath() + '*.svg'
-            ];
-            app.webIconsConfigFiles = {};
-            app.webIconsConfigFiles[ getFullPath('css') + '98_webicons.css' ] = [
-            	getWebIconsPath() + '*.css'
-            ];
-            app.webIconsConfigFiles[ getFullPath('css-print') + '98_webicons.css' ] = [
-            	getWebIconsPath() + '*.css'
             ];
 
             // Extend with app configuration
@@ -163,7 +156,8 @@ module.exports = function(grunt) {
                     	getWebFontsPath()
                     ],
                     webicons: [
-                    	getWebIconsPath()
+                    	getWebIconsPath(),
+                        getFullPath('scss') + '_' + app.name + '-icons.scss'
                     ]
                 },
                 tasty_swig: {
@@ -200,6 +194,7 @@ module.exports = function(grunt) {
 						options: {
                             relativeFontPath: '../fonts/',
 							font: app.name + '-icons',
+                            stylesheet: 'scss',
                             templateOptions: {
                                 baseClass: app.name + '-icon',
                                 classPrefix: app.name + '-icon-',
@@ -211,9 +206,6 @@ module.exports = function(grunt) {
                 concat: {
                 	webfonts: {
                 		files: app.webFontConfigFiles
-                	},
-                	webicons: {
-                		files: app.webIconsConfigFiles
                 	},
                     css: {
                         filter: 'isFile',
@@ -269,7 +261,15 @@ module.exports = function(grunt) {
 	                                app.jsPath
 	                            ],
 	                            dest: app.wwwPath
-	                        }
+	                        },
+                            {
+                                expand: true,
+                                cwd: getWebIconsPath(),
+                                src: [
+                                    '*.scss'
+                                ],
+                                dest: getFullPath('scss')
+                            }
                         ]
                     },
                     deploy: {
@@ -406,12 +406,11 @@ module.exports = function(grunt) {
             grunt.task.run([
                 'clean',
                 'concat:webfonts',
-                'concat:webicons',
+                'copy:build',
                 'sass:build',
                 'concat:js',
                 'tasty_swig',
                 'copy:deploy',
-                'copy:build',
                 'clean:mapFiles',
                 'clean:webfonts',
                 'clean:webicons'
@@ -431,12 +430,11 @@ module.exports = function(grunt) {
                     'fontgen',
                     'webfont',
                     'concat:webfonts',
-                    'concat:webicons',
+                    'copy:build',
                     'sass:build',
                     'concat:js',
                     'tasty_swig',
                     'copy:deploy',
-                    'copy:build',
                     'clean:mapFiles',
                     'clean:webfonts',
                     'clean:webicons'
