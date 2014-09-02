@@ -147,6 +147,7 @@ module.exports = function(grunt) {
                     },
                     www: [
                         app.wwwPath + '*',
+                        getFullPath('scss') + '_' + app.name + '-icons.scss'
                     ],
                     mapFiles: [
                     	getFullPath('css') + '/*.map',
@@ -156,8 +157,7 @@ module.exports = function(grunt) {
                     	getWebFontsPath()
                     ],
                     webicons: [
-                    	getWebIconsPath(),
-                        getFullPath('scss') + '_' + app.name + '-icons.scss'
+                    	getWebIconsPath()
                     ]
                 },
                 tasty_swig: {
