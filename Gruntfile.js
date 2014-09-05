@@ -92,13 +92,15 @@ module.exports = function(grunt) {
             return ret;
         },
         setAppConfig = function(command, config) {
+            // Initialize with required data for extension
+            app.path = 'app/' + config.name;
+
             // Extend with app configuration
             if ( grunt.file.exists( app.path + '/config.json' ) )
                 app = extend( app, grunt.file.readJSON( app.path + '/config.json' ) );
 
-            // Set the App Object
+            // Continue setting our core app data
             app.command = command;
-            app.path = 'app/' + config.name;
             app.name = config.name;
             app.cssMin = 'css/' + config.name + '.min.css';
             app.cssPath = 'css/**/*.css';
