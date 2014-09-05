@@ -16,11 +16,15 @@
     {% for href in app.cssFiles.print %}
     <link href="{{ href }}" rel="stylesheet" media="print">
     {% endfor %}
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
     {% block content %}
     {% endblock %}
     <!-- Scripts -->
+    {% block scripts %}
+    {% endblock %}
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
