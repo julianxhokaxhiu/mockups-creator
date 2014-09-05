@@ -92,6 +92,10 @@ module.exports = function(grunt) {
             return ret;
         },
         setAppConfig = function(command, config) {
+            // Extend with app configuration
+            if ( grunt.file.exists( app.path + '/config.json' ) )
+                app = extend( app, grunt.file.readJSON( app.path + '/config.json' ) );
+
             // Set the App Object
             app.command = command;
             app.path = 'app/' + config.name;
@@ -133,10 +137,6 @@ module.exports = function(grunt) {
             app.iconsConfigFiles[ getWebIconsPath() ] = [
             	getIconsPath() + '*.svg'
             ];
-
-            // Extend with app configuration
-            if ( grunt.file.exists( app.path + '/config.json' ) )
-        		app = extend( app, grunt.file.readJSON( app.path + '/config.json' ) );
 
             // Configure the tasks
             grunt.initConfig({
