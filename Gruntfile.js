@@ -409,28 +409,6 @@ module.exports = function(grunt) {
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
-    grunt.registerTask('watchbuild', 'Build a mockup without regenerating fonts and icons', function ( name ) {
-        if (appExists(name)) {
-            setAppConfig(this.name, {
-                name: name
-            });
-            grunt.task.run([
-                'clean',
-                'concat:webfonts',
-                'copy:build',
-                'sass:build',
-                'autoprefixer',
-                'concat:js',
-                'tasty_swig',
-                'copy:deploy',
-                'clean:mapFiles',
-                'clean:webfonts',
-                'clean:webicons'
-            ]);
-        } else
-            grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
-    });
-
     grunt.registerTask('rebuild', 'Build a mockup without watching for file modifications', function ( name, watchTask ) {
         if (appExists(name)) {
             var tasks = [];
