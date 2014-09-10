@@ -228,7 +228,7 @@ module.exports = function(grunt) {
                         browsers: ['last 3 versions', 'bb 10', 'android 3']
                     },
                     build: {
-                        src: app.wwwPath + 'css/*'
+                        src: app.wwwPath + 'css/*.css'
                     },
                 },
                 cssmin: {
