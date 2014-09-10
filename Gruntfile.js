@@ -197,6 +197,7 @@ module.exports = function(grunt) {
 					icons: {
 						src: getIconsPath() + '*.svg',
 						dest: getWebIconsPath(),
+                        destCss: getFullPath('scss'),
 						options: {
                             relativeFontPath: '../fonts/',
 							font: app.name + '-icons',
@@ -268,15 +269,7 @@ module.exports = function(grunt) {
 	                                app.jsPath
 	                            ],
 	                            dest: app.wwwPath
-	                        },
-                            {
-                                expand: true,
-                                cwd: getWebIconsPath(),
-                                src: [
-                                    '*.scss'
-                                ],
-                                dest: getFullPath('scss')
-                            }
+	                        }
                         ]
                     },
                     deploy: {
@@ -426,11 +419,11 @@ module.exports = function(grunt) {
                     'webfont',
                     'concat:webfonts',
                     'sass:build',
-                    'autoprefixer',
                     'concat:js',
                     'tasty_swig',
                     'copy:deploy',
                     'copy:build',
+                    'autoprefixer',
                     'clean:mapFiles',
                     'clean:webfonts',
                     'clean:webicons'
@@ -445,9 +438,9 @@ module.exports = function(grunt) {
                 tasks = tasks.concat([
                     'clean:cssFiles',
                     'sass:build',
-                    'autoprefixer',
                     'copy:deploy',
-                    'copy:build'
+                    'copy:build',
+                    'autoprefixer'
                 ]);
             } else if ( watchTask == 'js' ) {
                 tasks = tasks.concat([
@@ -478,11 +471,11 @@ module.exports = function(grunt) {
                 'sass:deploy',
                 'concat:css',
                 'concat:cssPrint',
-                'autoprefixer',
                 'cssmin',
                 'closurecompiler',
                 'tasty_swig',
                 'copy:deploy',
+                'autoprefixer',
                 'clean:mapFiles',
                 'clean:webfonts',
                 'clean:webicons'
