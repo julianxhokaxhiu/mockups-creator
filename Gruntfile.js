@@ -419,6 +419,7 @@ module.exports = function(grunt) {
                 'concat:webfonts',
                 'copy:build',
                 'sass:build',
+                'autoprefixer',
                 'concat:js',
                 'tasty_swig',
                 'copy:deploy',
@@ -443,6 +444,7 @@ module.exports = function(grunt) {
                     'concat:webfonts',
                     'copy:build',
                     'sass:build',
+                    'autoprefixer',
                     'concat:js',
                     'tasty_swig',
                     'copy:deploy',
@@ -459,6 +461,7 @@ module.exports = function(grunt) {
             } else if ( watchTask == 'css' ) {
                 tasks = tasks.concat([
                     'sass:build',
+                    'autoprefixer',
                     'copy:deploy',
                     'copy:build'
                 ]);
