@@ -225,6 +225,7 @@ module.exports = function(grunt) {
                 },
                 autoprefixer: {
                     options: {
+                        map: true,
                         browsers: ['last 3 versions', 'bb 10', 'android 3']
                     },
                     build: {
