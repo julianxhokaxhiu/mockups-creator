@@ -151,9 +151,13 @@ module.exports = function(grunt) {
                         app.wwwPath + '*',
                         getFullPath('scss') + '_' + app.name + '-icons.scss'
                     ],
+                    cssFiles: [
+                        getFullPath('css') + '99_' + app.name + '.css',
+                        getFullPath('css-print') + '99_' + app.name + '.css'
+                    ],
                     mapFiles: [
-                    	getFullPath('css') + '/*.map',
-                        getFullPath('css-print') + '/*.map',
+                    	getFullPath('css') + '*.map',
+                        getFullPath('css-print') + '*.map',
                     ],
                     webfonts: [
                     	getWebFontsPath()
@@ -421,12 +425,12 @@ module.exports = function(grunt) {
                     'fontgen',
                     'webfont',
                     'concat:webfonts',
-                    'copy:build',
                     'sass:build',
                     'autoprefixer',
                     'concat:js',
                     'tasty_swig',
                     'copy:deploy',
+                    'copy:build',
                     'clean:mapFiles',
                     'clean:webfonts',
                     'clean:webicons'
@@ -439,6 +443,7 @@ module.exports = function(grunt) {
                 ]);
             } else if ( watchTask == 'css' ) {
                 tasks = tasks.concat([
+                    'clean:cssFiles',
                     'sass:build',
                     'autoprefixer',
                     'copy:deploy',
@@ -470,7 +475,6 @@ module.exports = function(grunt) {
                 'fontgen',
                 'webfont',
                 'concat:webfonts',
-                'copy:deploy',
                 'sass:deploy',
                 'concat:css',
                 'concat:cssPrint',
@@ -478,6 +482,7 @@ module.exports = function(grunt) {
                 'cssmin',
                 'closurecompiler',
                 'tasty_swig',
+                'copy:deploy',
                 'clean:mapFiles',
                 'clean:webfonts',
                 'clean:webicons'
