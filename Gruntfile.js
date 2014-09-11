@@ -202,6 +202,7 @@ module.exports = function(grunt) {
                             relativeFontPath: '../fonts/',
 							font: app.name + '-icons',
                             stylesheet: 'scss',
+                            htmlDemo: false,
                             templateOptions: {
                                 baseClass: app.name + '-icon',
                                 classPrefix: app.name + '-icon-',
