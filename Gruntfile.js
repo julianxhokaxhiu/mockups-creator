@@ -38,6 +38,10 @@ module.exports = function(grunt) {
 
             return ret;
         },
+        getCurrentDate = function() {
+            var date = new Date();
+            return date.getDay() + '-' + date.getMonth() + '-' + date.getFullYear();
+        },
         getResourcePath = function() {
         	return app.path + '/rsc/';
         },
@@ -102,15 +106,15 @@ module.exports = function(grunt) {
             // Continue setting our core app data
             app.command = command;
             app.name = config.name;
-            app.cssMin = 'css/' + config.name + '.min.' + Date.now() + '.css';
+            app.cssMin = 'css/' + config.name + '.min.' + getCurrentDate() + '.css';
             app.cssPath = 'css/**/*.css';
             app.cssMapPath = 'css/**/*.map';
             app.scssPath = 'scss/screen.scss';
-            app.cssPrintMin = 'css/' + config.name + '.min.' + Date.now() + '.print.css';
+            app.cssPrintMin = 'css/' + config.name + '.min.' + getCurrentDate() + '.print.css';
             app.cssPrintPath = 'css-print/**/*.css';
             app.cssPrintMapPath = 'css-print/**/*.map';
             app.scssPrintPath = 'scss/print.scss';
-            app.jsMin = 'js/' + config.name + '.min.' + Date.now() + '.js';
+            app.jsMin = 'js/' + config.name + '.min.' + getCurrentDate() + '.js';
             app.jsPath = 'js/**/*.js';
             app.cssConfigFiles = {}
             app.cssConfigFiles[app.wwwPath + app.cssMin] = [ getFullPath() + app.cssPath ];
