@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         getCurrentDate = function() {
             var date = new Date();
-            return date.getDay() + '-' + date.getMonth() + '-' + date.getFullYear();
+            return date.getDate() + '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
         },
         getResourcePath = function() {
         	return app.path + '/rsc/';
