@@ -21,6 +21,7 @@
     "grunt-tasty-swig": "*",
     "grunt-webfont": "*",
     "grunt-yui-compressor": "*",
-    "node.extend": "*"
+    "node.extend": "*",
+    "load-grunt-tasks": "*"
   }
 }

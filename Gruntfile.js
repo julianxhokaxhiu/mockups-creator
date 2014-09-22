@@ -382,18 +382,7 @@ module.exports = function(grunt) {
         };
 
     // Load Tasks
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-yui-compressor');
-    grunt.loadNpmTasks('grunt-closurecompiler');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-tasty-swig');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-rsync');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-fontgen');
-    grunt.loadNpmTasks('grunt-webfont');
+    require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
         grunt.warn('No project name specified.\n\nAvailable commands:\n"build:project_name"\n"deploy:project_name"\n"make:project_name"\n');
