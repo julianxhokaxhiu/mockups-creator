@@ -18,7 +18,7 @@
     "grunt-fontgen": "*",
     "grunt-rsync": "*",
     "grunt-sass": "*",
-    "grunt-swig": "julianxhokaxhiu/grunt-swig",
+    "grunt-tasty-swig": "julianxhokaxhiu/grunt-tasty-swig",
     "grunt-webfont": "*",
     "grunt-yui-compressor": "*",
     "node.extend": "*",

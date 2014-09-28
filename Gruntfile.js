@@ -170,15 +170,13 @@ module.exports = function(grunt) {
                     	getWebIconsPath()
                     ]
                 },
-                swig: {
+                tasty_swig: {
+                	options: {
+                		context: {
+                			app: getAppConfig()
+                		}
+                	},
                 	build: {
-                        init: {
-                            autoescape: true
-                        },
-                        generateSitemap: false,
-                        generateRobotstxt: false,
-                        flattern: true,
-                        app: getAppConfig(),
 						src: [ getFullPath() + '*.swig' ],
 						dest: app.wwwPath
 					}
@@ -416,7 +414,7 @@ module.exports = function(grunt) {
                     'concat:webfonts',
                     'sass:build',
                     'concat:js',
-                    'swig',
+                    'tasty_swig',
                     'copy:deploy',
                     'copy:build',
                     'autoprefixer',
@@ -426,7 +424,7 @@ module.exports = function(grunt) {
                 ]);
             } else if ( watchTask == 'html' ) {
                 tasks = tasks.concat([
-                    'swig',
+                    'tasty_swig',
                     'copy:deploy',
                     'copy:build'
                 ]);
@@ -469,7 +467,7 @@ module.exports = function(grunt) {
                 'concat:cssPrint',
                 'cssmin',
                 'closurecompiler',
-                'swig',
+                'tasty_swig',
                 'copy:deploy',
                 'autoprefixer',
                 'clean:mapFiles',
