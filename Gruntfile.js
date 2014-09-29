@@ -203,6 +203,7 @@ module.exports = function(grunt) {
 						dest: getWebIconsPath(),
                         destCss: getFullPath('scss'),
 						options: {
+							template: app.path + '/icons.css',
                             relativeFontPath: '../fonts/',
 							font: app.name + '-icons',
                             stylesheet: 'scss',

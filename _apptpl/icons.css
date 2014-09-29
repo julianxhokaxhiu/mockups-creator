@@ -1,0 +1,43 @@
+/* Template file for SCSS output file for Web Icons */
+<% if (fontfaceStyles) { %>
+	<% if (fontSrc1) { %>
+@font-face {
+	font-family:"<%= fontBaseName %>";
+	src:<%= fontSrc1 %>;
+	font-weight:normal;
+	font-style:normal;
+}
+	<% } %>
+@font-face {
+	font-family:"<%= fontBaseName %>";
+	<% if (fontSrc1) { %>
+		src:<%= fontSrc1 %>;
+	<% }%>
+		src:<%= fontSrc2 %>;
+		font-weight:normal;
+		font-style:normal;
+}
+<% } %>
+/* Base icon style */
+@mixin <%= baseClass %>() {
+	display: inline-block;
+	font: normal normal normal 14px/1 "<%= fontBaseName %>";
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.<%= baseClass %> {
+	@include <%= baseClass %>();
+}
+/* Icons */
+<% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
+$<%= classPrefix %><%= glyphs[glyphIdx] %>: "\<%= codepoints[glyphIdx] %>";
+@mixin <%= classPrefix %><%= glyphs[glyphIdx] %>() {
+	content: $<%= classPrefix %><%= glyphs[glyphIdx] %>;
+}
+.<%= classPrefix %><%= glyphs[glyphIdx] %>:before {
+	@include <%= classPrefix %><%= glyphs[glyphIdx] %>();
+}
+<% } %>
+/* CSS Output */
