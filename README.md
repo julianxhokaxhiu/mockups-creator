@@ -23,6 +23,7 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 - [YUI](http://yui.github.io/yuicompressor/) compressor for CSS
 - [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
 - Auto-rebuild + Live Reload when editing swig, scss or js files
+- Static file server. No more depending on Apache, Nginx, etc.
 
 ## Frontend
 - jQuery 2.x ( or 1.x for older browsers )
@@ -86,3 +87,20 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 - `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
 - `fonts` folder is used when you want to autogenerate webfonts based on `ttf` or `otf` desktop fonts. When you'll place some files here you'll get all known webfonts formats + a CSS file that will be minified with your SCSS file that exists in `tpl` folder. This will give a big speed boost to work with custom fonts without needing to create the CSS manually or with external tools.
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
+
+# `app.json` Reference
+```json
+{
+  // The output path where static files will be place after compile
+  "wwwPath": "../public_html/",
+  // The live reload port, needed to refresh the browser when a file has been edited
+  "liveReloadPort": 35729,
+  // The live reload host with port. This is placed directly inside the HTML. Usually you should use the same of liveReloadPort otherwise it won't work.
+  "liveReloadHost" : "localhost:35729",
+  // The host port where the static files will be served. -1 means disabled. 0 means "use the a random free one", 1 or more means "use that port"
+  "hostPort": -1,
+  // This is used by rsync
+  "deployPath": "/var/www/",
+  "deployHost": "localhost"
+}
+```
