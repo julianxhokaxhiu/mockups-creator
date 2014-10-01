@@ -89,7 +89,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
 
 # `app.json` Reference
-```json
+```javascript
 {
   // The output path where static files will be place after compile
   "wwwPath": "../public_html/",
