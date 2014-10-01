@@ -378,15 +378,42 @@ module.exports = function(grunt) {
                             host: app.deployHost
                         }
                     }
-                }
+                },
+                connect: {
+					build: {
+						options: {
+							port: app.hostPort,
+							hostname: '*',
+							base: app.wwwPath
+						}
+					}
+				}
             });
+
+			// Return app configuration for later usage
+			return app;
         };
 
     // Load Tasks
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
-        grunt.warn('No project name specified.\n\nAvailable commands:\n"build:project_name"\n"deploy:project_name"\n"make:project_name"\n');
+        grunt.warn('No project name specified.\n\nAvailable commands:\n"build:project_name"\n"deploy:project_name"\n"make:project_name"\n"server:project_name"\n\n');
+    });
+
+    grunt.registerTask('server', 'Serve an already built mockup', function ( name ) {
+        if (appExists(name)) {
+            var app = setAppConfig(this.name, {
+	                name: name
+	            });
+            if ( app.hostPort > -1 )
+		        grunt.task.run([
+		            'connect:build:keepalive'
+		        ]);
+	    	else
+	    		grunt.warn('[' + name + '] host port is not defined. Have you chosen one?\n')
+	    } else
+            grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');
     });
 
     grunt.registerTask('build', 'Build a mockup and watch for file modifications', function ( name ) {
@@ -404,7 +431,11 @@ module.exports = function(grunt) {
 
     grunt.registerTask('rebuild', 'Build a mockup without watching for file modifications', function ( name, watchTask ) {
         if (appExists(name)) {
-            var tasks = [];
+            var tasks = [],
+            	app = setAppConfig(this.name, {
+	                name: name
+	            });
+
             if ( watchTask === undefined ) watchTask = 'all';
 
             if ( watchTask == 'all' ) {
@@ -423,6 +454,10 @@ module.exports = function(grunt) {
                     'clean:webfonts',
                     'clean:webicons'
                 ]);
+                if ( app.hostPort > -1 )
+	                tasks = tasks.concat([
+	                	'connect:build'
+	                ]);
             } else if ( watchTask == 'html' ) {
                 tasks = tasks.concat([
                     'tasty_swig',
@@ -444,10 +479,6 @@ module.exports = function(grunt) {
                     'copy:build'
                 ]);
             }
-
-            setAppConfig(this.name, {
-                name: name
-            });
             grunt.task.run(tasks);
         } else
             grunt.warn('[' + name + '] does not exist. Have you typed it correctly?\n');

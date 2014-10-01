@@ -15,6 +15,7 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-sass": "*",
     "grunt-contrib-watch": "*",
+    "grunt-contrib-connect": "*",
     "grunt-fontgen": "*",
     "grunt-rsync": "*",
     "grunt-sass": "*",

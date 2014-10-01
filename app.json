@@ -2,6 +2,7 @@
 	"wwwPath": "../public_html/",
 	"liveReloadPort": 35729,
 	"liveReloadHost" : "localhost:35729",
+	"hostPort": -1,
 	"deployPath": "/var/www/",
 	"deployHost": "localhost"
 }
