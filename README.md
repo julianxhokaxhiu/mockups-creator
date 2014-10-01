@@ -48,9 +48,9 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 
 1. Run `npm install`.
 2. Run `bower install`.
-3. Adapt the [app.json](http) to fit your needs.
-4. Run `grunt make:project_name`.
-5. Work inside the [app](https://github.com/julianxhokaxhiu/mockups-creator/tree/master/app)/project_name folder that will be created.
+3. Run `grunt make:project_name`.
+4. Work inside the [app](https://github.com/julianxhokaxhiu/mockups-creator/tree/master/app)/project_name folder that will be created.
+5. Override the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json) with the [config.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/config.json) that you will find inside, to fit your needs.
 6. Continue with your flow ( see down below )
 
 ---
@@ -80,7 +80,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   grunt deploy:project_name
   ```
 
-# Reference
+# `Directories` reference
 
 - `_apptpl` folder is used as a starter template when you run `grunt make:project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
 - `rsc` folder is used for resources like images, and other things that will be copied 1:1 to the `wwwPath` folder.
@@ -88,7 +88,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 - `fonts` folder is used when you want to autogenerate webfonts based on `ttf` or `otf` desktop fonts. When you'll place some files here you'll get all known webfonts formats + a CSS file that will be minified with your SCSS file that exists in `tpl` folder. This will give a big speed boost to work with custom fonts without needing to create the CSS manually or with external tools.
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
 
-# `app.json` Reference
+# `app.json` reference
 ```javascript
 {
   // The output path where static files will be place after compile
@@ -104,3 +104,4 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   "deployHost": "localhost"
 }
 ```
+Basically the `config.json` is the same as `app.json` and will override its settings.
