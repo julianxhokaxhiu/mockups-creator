@@ -369,7 +369,8 @@ module.exports = function(grunt) {
                 },
                 rsync: {
                     options: {
-                        recursive: true
+                        recursive: true,
+                        deleteAll: true
                     },
                     deploy: {
                         options: {
