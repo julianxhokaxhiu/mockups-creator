@@ -21,6 +21,7 @@
 /* Base icon style */
 @mixin <%= baseClass %>() {
 	display: inline-block;
+	vertical-align: middle;
 	font: normal normal normal 14px/1 "<%= fontBaseName %>";
 	font-size: inherit;
 	text-rendering: auto;
