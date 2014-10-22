@@ -183,7 +183,8 @@ module.exports = function(grunt) {
                 },
 				sass: {
                     options: {
-                        sourceMap: !( ['build_deploy','deploy'].indexOf(app.command) > -1 )
+                        sourceMap: !( ['build_deploy','deploy'].indexOf(app.command) > -1 ),
+                        outputStyle: 'compressed'
                     },
 					build: {
 						files: app.scssConfigFiles
