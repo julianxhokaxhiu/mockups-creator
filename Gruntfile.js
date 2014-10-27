@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         run_grunt: {
             app: {
                 options: {
-                    task: '<%= grunt.cli.tasks %>'
+                    task: '<%= grunt.option("customtask") || grunt.cli.tasks %>'
                 },
                 src: 'app/<%= appName %>/Gruntfile.js'
             }
@@ -72,7 +72,10 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
-        grunt.warn('No app name specified.\n\nAvailable tasks: build, deploy, make, server\nAvailable arguments: --app=APPNAME\n\n');
+    	if ( grunt.option('app') === undefined )
+        	grunt.warn('No app name specified.\n\nAvailable tasks: build, deploy, make, server\nAvailable arguments: --app=APPNAME --customtask=TASKNAME\n\n');
+       	else
+       		grunt.task.run('run_grunt');
     });
 
     grunt.registerTask('server', [
