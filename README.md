@@ -7,15 +7,23 @@ A NodeJS App that creates static HTML mockups using Grunt
 
 This was built because of my needs to always kickstart a mockup in the fastest way as possible. So, this will bring a very flexible but powerful mockup generator based on various technologies.
 
-## What I will get from this
+## What is this?
 
-It will create HTML files based on your `wwwPath` inside the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json#L2) configuration files. Once you'll run the related `grunt` task, you'll get your output in that folder.
+This is a yeoman-like project. It will help you to kickstar mockups in no-time.
 
-# Features
+## Why do you think this is so special
 
-## Backend
+Because I want to create a platform for independent mockups that doesn't really belongs to some CMS or other technology. This is also different from the simple "static site generator" that you can find elsewhere.
+
+I love to be flexible and indipendent from the platforms. That's why I built this tool.
+
+## What does the mockup start template have?
+
+**Backend**
+
+- Customizable [Gruntfile.js](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/Gruntfile.js).
 - [Swig Templates](http://paularmstrong.github.io/swig/) ( just like Twig, but for Javascript )
-- Template custom data customizable via JSON file ( see [data.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/data.json) file )
+- Template custom data customizable via JSON file ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json#L18) file )
 - Web Fonts generator ( just place your TTF or OTF fonts in the fonts folder )
 - Web Icons generator based on SVG files ( just place them in the icons folder )
 - SCSS ( with map files support so you can see from your inspector directly the SCSS file reference )
@@ -25,12 +33,15 @@ It will create HTML files based on your `wwwPath` inside the [app.json](https://
 - Auto-rebuild + Live Reload when editing swig, scss or js files
 - Static file server. No more depending on Apache, Nginx, etc.
 
-## Frontend
+**Frontend**
+
 - jQuery 2.x ( or 1.x for older browsers )
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
+- Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/bower.json).
 
-## Deploy
+**Deploy**
+
 - [Rsync](http://en.wikipedia.org/wiki/Rsync)
 
 # Requirements
@@ -47,43 +58,43 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 # How to use
 
 1. Run `npm install`.
-2. Run `bower install`.
-3. Run `grunt make:project_name`.
-4. Work inside the [app](https://github.com/julianxhokaxhiu/mockups-creator/tree/master/app)/project_name folder that will be created.
-5. Override the [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/app.json) with the [config.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/config.json) that you will find inside, to fit your needs.
-6. Continue with your flow ( see down below )
+2. Run `grunt make --app=project_name`.
+3. Wait for the cool stuff to be done
+4. Work inside the _[app](https://github.com/julianxhokaxhiu/mockups-creator/tree/master/app)/project_name/_ folder that will be created.
+5. Configure your _app/project_name/[app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json)_ with the desired values.
+6. Run one of the commands down below.
 
 ---
 
 - Normally when you start a project you should use
   ```
-  grunt make:project_name
+  grunt make --app=project_name
   ```
 
 - While you're developing your mockup, run this task to build the project and watch for changes (usually you run this only once)
   ```
-  grunt build:project_name
+  grunt build --app=project_name
   ```
 
 - If you want to build in Development mode your mockup but you don't want to watch it for changes
   ```
-  grunt rebuild:project_name
+  grunt rebuild --app=project_name
   ```
 
 - When you're finished and you're ready to deploy, but want to test it first
   ```
-  grunt build_deploy:project_name
+  grunt build_deploy --app=project_name
   ```
 
 - When you're sure that everything is ok and want to deploy it using `rsync`
   ```
-  grunt deploy:project_name
+  grunt deploy --app=project_name
   ```
 
 # `Directories` reference
 
-- `_apptpl` folder is used as a starter template when you run `grunt make:project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
-- `rsc` folder is used for resources like images, and other things that will be copied 1:1 to the `wwwPath` folder.
+- `_apptpl` folder is used as a starter template when you run `grunt make --app=project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
+- `rsc` folder is used for resources like images, and other things that will be copied 1:1 to the `output.path` folder.
 - `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
 - `fonts` folder is used when you want to autogenerate webfonts based on `ttf` or `otf` desktop fonts. When you'll place some files here you'll get all known webfonts formats + a CSS file that will be minified with your SCSS file that exists in `tpl` folder. This will give a big speed boost to work with custom fonts without needing to create the CSS manually or with external tools.
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
@@ -91,17 +102,32 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 # `app.json` reference
 ```javascript
 {
-  // The output path where static files will be place after compile
-  "wwwPath": "../public_html/",
-  // The live reload port, needed to refresh the browser when a file has been edited
-  "liveReloadPort": 35729,
-  // The live reload host with port. This is placed directly inside the HTML. Usually you should use the same of liveReloadPort otherwise it won't work.
-  "liveReloadHost" : "localhost:35729",
-  // The host port where the static files will be served. -1 means disabled. 0 means "use the a random free one", 1 or more means "use that port"
-  "hostPort": -1,
-  // This is used by rsync
-  "deployPath": "/var/www/",
-  "deployHost": "localhost"
+	"config" : {
+		"output" : {
+			// The output path of your project
+			"path" : "../../../public_html"
+		},
+		"livereload" : {
+			// The livereload port
+			"port" : 35729,
+			// The livereload host
+			"host" : "localhost"
+		},
+		"server" : {
+			// The static server port. -1 means disabled.
+			"port" : -1
+		},
+		"deploy" : {
+			// The rsync path on the remote server
+			"path" : "/var/www",
+			// The rsync host of the remote server
+			"host" : "localhost"
+		}
+	},
+	// Custom template data
+	"data" : {
+		"foo" : "bar"
+	}
 }
 ```
 Basically the `config.json` is the same as `app.json` and will override its settings.
