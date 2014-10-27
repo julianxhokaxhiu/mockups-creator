@@ -1,5 +1,5 @@
-mockups-creator
-===============
+mockups-creator v2
+==================
 
 A NodeJS App that creates static HTML mockups using Grunt
 
@@ -131,3 +131,13 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 }
 ```
 Basically the `config.json` is the same as `app.json` and will override its settings.
+
+# Moving from v1 to v2
+
+- `cd app/project_name` ( `project_name` is your mockup project )
+- `mv config.json app.json` and adapt your settings to the new format ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json) )
+- `mv icons.css tpl/icons.css`
+- Copy `bower.json`, `Gruntfile.js` and `package.json` to `app/project_name`
+- Fix the `name` property inside `package.json` using your `project_name`
+- `npm install`
+- `bower install`
