@@ -1,0 +1,21 @@
+{
+	"config" : {
+		"output" : {
+			"path" : "../../public_html"
+		},
+		"livereload" : {
+			"port" : 35729,
+			"host" : "localhost"
+		},
+		"server" : {
+			"port" : -1
+		},
+		"deploy" : {
+			"path" : "/var/www",
+			"host" : "localhost"
+		}
+	},
+	"data" : {
+		"foo" : "bar"
+	}
+}
