@@ -8,20 +8,10 @@
   "version": "0.0.1",
   "dependencies": {
     "grunt": "*",
-    "grunt-autoprefixer": "*",
-    "grunt-closurecompiler": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-concat": "*",
+    "grunt-run-grunt": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-contrib-connect": "*",
-    "grunt-fontgen": "*",
-    "grunt-rsync": "*",
-    "grunt-contrib-sass": "*",
-    "grunt-tasty-swig": "julianxhokaxhiu/grunt-tasty-swig",
-    "grunt-webfont": "*",
-    "grunt-yui-compressor": "*",
-    "node.extend": "*",
+    "grunt-exec": "*",
+    "grunt-template": "*",
     "load-grunt-tasks": "*"
   }
 }
