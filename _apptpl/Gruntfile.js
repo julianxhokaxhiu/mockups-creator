@@ -31,9 +31,9 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         app: grunt.file.readJSON('app.json'),
         cssMin: 'css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css',
-        cssPrintMin = 'css/<%= pkg.name %>.min.<%= getCurrentDate() %>.print.css',
-        jsMin = 'js/<%= pkg.name %>.min.<%= getCurrentDate() %>.js',
-        getCurrentDate = function() {
+        cssPrintMin: 'css/<%= pkg.name %>.min.<%= getCurrentDate() %>.print.css',
+        jsMin: 'js/<%= pkg.name %>.min.<%= getCurrentDate() %>.js',
+        getCurrentDate: function() {
             var date = new Date();
             return date.getDate() + '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
         },
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 force: true
             },
             output: [
-                '<%= config. %>',
+                '<%= app.config.output.path %>/*',
                 'tpl/scss/_<%= pkg.name %>-icons.scss'
             ],
             cssFiles: [
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
             		}
             	},
 				src: [ 'tpl/*.swig' ],
-				dest: '<%= app.config.output.path %>'
+				dest: '<%= app.config.output.path %>/'
 			},
 			deploy: {
 				options: {
@@ -101,7 +101,7 @@ module.exports = function(grunt) {
             		}
             	},
 				src: [ 'tpl/*.swig' ],
-				dest: '<%= app.config.output.path %>'
+				dest: '<%= app.config.output.path %>/'
 			}
         },
 		sass: {
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
         closurecompiler: {
             build: {
             	files: {
-            		'<%= app.config.output.path %>/<%= jsMin %>' ] = [
+            		'<%= app.config.output.path %>/<%= jsMin %>': [
 		            	'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
 		            	'tpl/js/**/*.js'
 		            ]
@@ -280,7 +280,7 @@ module.exports = function(grunt) {
         },
         watch: {
         	options: {
-        		livereload: '<%= app.livereload.port %>'
+        		livereload: '<%= app.config.livereload.port %>'
         	},
             html: {
                 files: [
@@ -358,10 +358,10 @@ module.exports = function(grunt) {
                 'concat:webfonts',
                 'sass:build',
                 'concat:js',
-                'tasty_swig',
+                'tasty_swig:build',
                 'copy:deploy',
                 'copy:build',
-                'autoprefixer',
+                'autoprefixer:build',
                 'clean:mapFiles',
                 'clean:webfonts',
                 'clean:webicons'
@@ -372,7 +372,7 @@ module.exports = function(grunt) {
                 ]);
         } else if ( watchTask == 'html' ) {
             tasks = tasks.concat([
-                'tasty_swig',
+                'tasty_swig:build',
                 'copy:deploy',
                 'copy:build'
             ]);
@@ -382,7 +382,7 @@ module.exports = function(grunt) {
                 'sass:build',
                 'copy:deploy',
                 'copy:build',
-                'autoprefixer'
+                'autoprefixer:build'
             ]);
         } else if ( watchTask == 'js' ) {
             tasks = tasks.concat([
@@ -404,9 +404,9 @@ module.exports = function(grunt) {
         'concat:cssPrint',
         'cssmin',
         'closurecompiler',
-        'tasty_swig',
+        'tasty_swig:deploy',
         'copy:deploy',
-        'autoprefixer',
+        'autoprefixer:deploy',
         'clean:mapFiles',
         'clean:webfonts',
         'clean:webicons'
