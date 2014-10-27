@@ -193,8 +193,8 @@ module.exports = function(grunt) {
         cssmin: {
             build: {
                 files: {
-                	'<%= app.output.path %>/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css/**/*.css' ],
-                	'<%= app.output.path %>/css-print/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css-print/**/*.css' ]
+                	'<%= app.config.output.path %>/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css/**/*.css' ],
+                	'<%= app.config.output.path %>/css-print/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css-print/**/*.css' ]
                 }
             }
         },
@@ -356,7 +356,7 @@ module.exports = function(grunt) {
                 'fontgen',
                 'webfont',
                 'concat:webfonts',
-                'sass:build',
+                'sass',
                 'concat:js',
                 'tasty_swig:build',
                 'copy:deploy',
@@ -379,7 +379,7 @@ module.exports = function(grunt) {
         } else if ( watchTask == 'css' ) {
             tasks = tasks.concat([
                 'clean:cssFiles',
-                'sass:build',
+                'sass',
                 'copy:deploy',
                 'copy:build',
                 'autoprefixer:build'
@@ -399,7 +399,7 @@ module.exports = function(grunt) {
         'fontgen',
         'webfont',
         'concat:webfonts',
-        'sass:deploy',
+        'sass',
         'concat:css',
         'concat:cssPrint',
         'cssmin',
