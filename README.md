@@ -91,6 +91,11 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   grunt deploy --app=project_name
   ```
 
+# Arguments Reference
+
+- `--app` is the option that says which app to run based on your chosen task.
+- `--customtask` is for custom tasks developed inside your app that doesn't exists on the core mockups-creator.
+
 # `Directories` reference
 
 - `_apptpl` folder is used as a starter template when you run `grunt make --app=project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
