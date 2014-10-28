@@ -18,6 +18,9 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": "*",
-    "fontawesome": "*"
+    "fontawesome": "*",
+    "modernizr": "*",
+    "detectizr": "*",
+    "SimpleStateManager": "*",
   }
 }

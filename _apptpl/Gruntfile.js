@@ -270,6 +270,73 @@ module.exports = function(grunt) {
                         dest: '<%= app.config.output.path %>/'
                     }
                 ]
+            },
+            typo3: {
+            	files: [
+            		// Icons
+            		{
+            			expand: true,
+                		flatten: true,
+                		cwd: 'icons/',
+                		src: [ '*.svg' ],
+                		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Icons/'
+            		},
+                	// Fonts
+                	{
+                		expand: true,
+                		flatten: true,
+                		cwd: 'fonts/',
+                		src: [ '*' ],
+                		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Fonts/'
+                	},
+                	// Images
+                	{
+                        expand: true,
+                        cwd: 'rsc/img',
+                        src: [ '*' ],
+                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Images/'
+                    },
+                	// HTML
+                    {
+                        expand: true,
+                        flatten: true,
+                        cwd: '<%= app.config.output.path %>/',
+                        src: ['*.html'],
+                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Templates/Html/'
+                    },
+                    // SCSS
+                    {
+                        expand: true,
+                        flatten: true,
+                        cwd: 'tpl/scss/',
+                        src: ['*.scss'],
+                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Scss/'
+                    },
+                    // Javascript
+                    {
+                    	expand: true,
+                        flatten: true,
+                        cwd: 'tpl/js/',
+                        src: ['*.js'],
+                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/JavaScript/'
+                    },
+                    // Bower + App configuration
+                    {
+                        expand: true,
+                        flatten: true,
+                    	src: [ 'app.json', 'bower.json' ],
+                    	dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
+                    },
+                    /// Typo3 related stuff
+                    {
+                        expand: true,
+                        flatten: true,
+                        dot: true,
+                        cwd: '_typo3/',
+                        src: [ '*' ],
+                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
+                    }
+                ]
             }
         },
         watch: {
@@ -327,7 +394,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
-        grunt.warn('No task name specified.\n\nAvailable tasks: build, deploy, server"\n\n');
+        grunt.warn('No task name specified.\n\nAvailable tasks: build, deploy, server, typo3"\n\n');
     });
 
     grunt.registerTask('server', 'Serve an already built mockup', [
@@ -410,4 +477,9 @@ module.exports = function(grunt) {
 		'build_deploy',
 		'rsync:deploy'
     ]);
+
+    grunt.registerTask('typo3', 'Create a TYPO3 extension based on the current output of the mockup', [
+    	'build_deploy',
+    	'copy:typo3'
+    ])
 };

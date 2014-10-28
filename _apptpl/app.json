@@ -13,10 +13,17 @@
 		"deploy" : {
 			"path" : "/var/www",
 			"host" : "localhost"
+		},
+		"typo3" : {
+			"path" : "../../../typo3exts/",
+			"suffix" : "_core"
 		}
 	},
 	"assets" : {
 		"js" : [
+			"bower_components/modernizr/modernizr.js",
+			"bower_components/detectizr/dist/detectizr.js",
+			"bower_components/SimpleStateManager/src/ssm.js",
 			"bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
 			"tpl/js/*.js"
 		]

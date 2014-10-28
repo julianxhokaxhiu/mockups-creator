@@ -98,6 +98,10 @@ module.exports = function(grunt) {
         'run_grunt'
     ]);
 
+    grunt.registerTask('typo3', [
+        'run_grunt'
+    ]);
+
     grunt.registerTask('make', [
         'copy',
         'template',
