@@ -166,10 +166,7 @@ module.exports = function(grunt) {
             },
             js: {
             	files: {
-            		'<%= app.config.output.path %>/<%= jsMin %>' : [
-		            	'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
-		            	'tpl/js/**/*.js'
-		            ]
+            		'<%= app.config.output.path %>/<%= jsMin %>' : '<%= app.config.assets.js %>'
             	}
             }
         },
@@ -201,10 +198,7 @@ module.exports = function(grunt) {
         closurecompiler: {
             build: {
             	files: {
-            		'<%= app.config.output.path %>/<%= jsMin %>': [
-		            	'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
-		            	'tpl/js/**/*.js'
-		            ]
+            		'<%= app.config.output.path %>/<%= jsMin %>': '<%= app.config.assets.js %>'
             	},
             	options: {
 	                // Any options supported by Closure Compiler, for example:

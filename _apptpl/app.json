@@ -15,6 +15,12 @@
 			"host" : "localhost"
 		}
 	},
+	"assets" : {
+		"js" : [
+			"bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
+			"tpl/js/*.js"
+		]
+	},
 	"data" : {
 		"foo" : "bar"
 	}
