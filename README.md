@@ -38,11 +38,17 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 - jQuery 2.x ( or 1.x for older browsers )
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
+- [Modernizr](http://modernizr.com/) + [Detectizr](https://github.com/barisaydinoglu/Detectizr)
+- [Simple State Manager](http://www.simplestatemanager.com/) useful for responsive websites and javascript handling
 - Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/bower.json).
 
 **Deploy**
 
 - [Rsync](http://en.wikipedia.org/wiki/Rsync)
+
+**Output**
+
+- [TYPO3](http://typo3.org/) extension output
 
 # Requirements
 
@@ -91,18 +97,23 @@ Otherwise you should look at your OS documentation on how to get these binaries 
   grunt deploy --app=project_name
   ```
 
+- When you want to output your project as a TYPO3 extension
+  ```
+  grunt typo3 --app=project_name
+  ```
+
 # Arguments Reference
 
 - `--app` is the option that says which app to run based on your chosen task.
-- `--customtask` is for custom tasks developed inside your app that doesn't exists on the core mockups-creator.
+- `--customtask` is for custom tasks developed inside your app that doesn't belong to the core mockups-creator tasks.
 
 # `Directories` reference
 
 - `_apptpl` folder is used as a starter template when you run `grunt make --app=project_name` task. Everything from this folder will be copied 1:1 to the `project_name` folder that you got from the `grunt make` task.
-- `rsc` folder is used for resources like images, and other things that will be copied 1:1 to the `output.path` folder.
-- `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
 - `fonts` folder is used when you want to autogenerate webfonts based on `ttf` or `otf` desktop fonts. When you'll place some files here you'll get all known webfonts formats + a CSS file that will be minified with your SCSS file that exists in `tpl` folder. This will give a big speed boost to work with custom fonts without needing to create the CSS manually or with external tools.
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
+- `rsc` folder is used for resources like images, and other things. All the items inside this folder will be copied to the root of your `output.path` configuration or `typo3.path` configuration.
+- `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
 
 # `app.json` reference
 ```javascript
@@ -127,7 +138,23 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 			"path" : "/var/www",
 			// The rsync host of the remote server
 			"host" : "localhost"
+		},
+		"typo3" : {
+			// Typo3 main folder where your extension is going to be saved.
+			// Inside this folder will be created based on your project_name and suffix property below.
+			"path" : "../../../typo3exts/",
+			// Suffix to be appended to the project name when creating the folder
+			"suffix" : "_core"
 		}
+	},
+	// This will be the assets configuration
+	"assets" : {
+		// Tells to build/deploy tasks, the resources and their order to be compiled to a singular JS file
+		"js" : [
+			"bower_components/...",
+			"...",
+			"tpl/js/*.js"
+		]
 	},
 	// Custom template data
 	"data" : {
