@@ -316,8 +316,8 @@ module.exports = function(grunt) {
             deploy: {
                 options: {
                     src: '<%= app.config.output.path %>/',
-                    dest: '<%= app.deploy.path %>',
-                    host: '<%= app.deploy.host %>'
+                    dest: '<%= app.config.deploy.path %>',
+                    host: '<%= app.config.deploy.host %>'
                 }
             }
         },
