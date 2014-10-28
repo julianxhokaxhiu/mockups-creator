@@ -82,7 +82,7 @@ module.exports = function(grunt) {
         'run_grunt'
     ]);
 
-    grunt.registerTask('build'[
+    grunt.registerTask('build', [
         'run_grunt'
     ]);
 
