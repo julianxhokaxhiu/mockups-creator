@@ -2,3 +2,7 @@
 *
 # Except this file
 !.gitignore
+!gulpfile.js
+!icons.css
+!package.json
+!README.md

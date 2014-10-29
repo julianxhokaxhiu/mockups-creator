@@ -1,0 +1,17 @@
+{
+    "name": "<%= appName %>",
+    "dependencies": {
+    	"gulp": "*",
+        "gulp-concat": "*",
+        "gulp-filter": "*",
+        "gulp-run": "*",
+        "gulp-sass": "*",
+        "gulp-uglify": "*",
+        "gulp-fontgen": "julianxhokaxhiu/gulp-fontgen",
+        "gulp-iconfont": "*",
+        "gulp-consolidate": "*",
+        "gulp-rename": "*",
+        "lodash": "*",
+        "del": "*"
+    }
+}
