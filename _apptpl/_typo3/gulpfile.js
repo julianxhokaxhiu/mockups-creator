@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	run = require('gulp-run'),
 	filter = require('gulp-filter'),
+	yuicompressor = require('gulp-yuicompressor'),
 	del = require('del'),
 	app = require('./app.json'),
 	pkg = require('./package.json');
@@ -26,6 +27,11 @@ gulp.task('scss', [ 'icons' ], function() {
 	.pipe(
 		sass({
 			outputStyle: 'compressed'
+		})
+	)
+	.pipe(
+		yuicompressor({
+			type: 'css'
 		})
 	)
 	.pipe(

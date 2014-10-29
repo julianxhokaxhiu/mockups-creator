@@ -11,6 +11,7 @@
         "gulp-iconfont": "*",
         "gulp-consolidate": "*",
         "gulp-rename": "*",
+        "gulp-yuicompressor": "*",
         "lodash": "*",
         "del": "*"
     }
