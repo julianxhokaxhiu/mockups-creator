@@ -48,7 +48,7 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 
 **Output**
 
-- [TYPO3](http://typo3.org/) extension output
+- [TYPO3](http://typo3.org/) extension output with Gulp script for building again all the "opened" files like SCSS, JS, Fonts and Icons
 
 # Requirements
 
@@ -114,6 +114,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 - `icons` folder is used to autogenerate icons for your website based on SVG files. Just put them there and you'll get all the job done automatically. You can simply use them as 'project_name-icon-svgfilename' classes.
 - `rsc` folder is used for resources like images, and other things. All the items inside this folder will be copied to the root of your `output.path` configuration or `typo3.path` configuration.
 - `tpl` folder is used for templating your app. Here will live the SCSS, the Swig template files and the Javascript code. Everything inside this folder will be compacted, minified, autoprefixed, etc. by Grunt Tasks.
+- `_typo3` is used to copy 1:1 to the packaged typo3 extension that will be built using the relative task.
 
 # `app.json` reference
 ```javascript
