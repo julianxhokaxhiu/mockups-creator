@@ -233,8 +233,7 @@ module.exports = function(grunt) {
                 	{
                 		expand: true,
                 		flatten: true,
-                		cwd: 'bower_components/',
-                		src: ['**/*.{ttf,woff,eot,svg,otf}'],
+                		src: '<%= app.assets.fonts %>',
                 		dest: '<%= app.config.output.path %>/fonts/'
                 	},
                 	// The project Webfonts
