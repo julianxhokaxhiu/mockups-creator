@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
-	uglify = require('gulp-uglify'),
+	gulpCC = require('gulp-closurecompiler'),
 	sass = require('gulp-sass'),
 	gulpFontgen = require('gulp-fontgen'),
 	iconfont = require('gulp-iconfont'),
@@ -51,13 +51,9 @@ gulp.task('js', function() {
 		])
 	)
 	.pipe(
-		concat('main.js')
-	)
-	.pipe(
-		uglify()
-	)
-	.pipe(
-		gulp.dest('Resources/Public/js/')
+		gulpCC({
+			dest: 'Resources/Public/js/main.js'
+		})
 	)
 });
 

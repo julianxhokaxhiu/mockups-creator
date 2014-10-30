@@ -6,7 +6,7 @@
         "gulp-filter": "*",
         "gulp-run": "*",
         "gulp-sass": "*",
-        "gulp-uglify": "*",
+        "gulp-closurecompiler": "*",
         "gulp-fontgen": "*",
         "gulp-iconfont": "*",
         "gulp-consolidate": "*",
