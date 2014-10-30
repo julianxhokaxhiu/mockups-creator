@@ -7,7 +7,7 @@
         "gulp-run": "*",
         "gulp-sass": "*",
         "gulp-uglify": "*",
-        "gulp-fontgen": "julianxhokaxhiu/gulp-fontgen",
+        "gulp-fontgen": "*",
         "gulp-iconfont": "*",
         "gulp-consolidate": "*",
         "gulp-rename": "*",
