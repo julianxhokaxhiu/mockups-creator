@@ -1,5 +1,5 @@
 {
-  "name": "mockups-creator",
+  "name": "<%= appName %>",
   "version": "0.0.1",
   "authors": [
     "Julian Xhokaxhiu <info@julianxhokaxhiu.com>"
@@ -21,6 +21,6 @@
     "fontawesome": "*",
     "modernizr": "*",
     "detectizr": "*",
-    "SimpleStateManager": "*",
+    "SimpleStateManager": "*"
   }
 }

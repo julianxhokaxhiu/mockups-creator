@@ -52,6 +52,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
+                	'app/<%= appName %>/bower.json': [ 'app/<%= appName %>/bower.json' ],
                     'app/<%= appName %>/package.json': [ 'app/<%= appName %>/package.json' ],
                     'app/<%= appName %>/_typo3/package.json': [ 'app/<%= appName %>/_typo3/package.json' ],
                 }
