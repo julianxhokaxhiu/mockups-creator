@@ -52,8 +52,11 @@ gulp.task('js', function() {
 	)
 	.pipe(
 		gulpCC({
-			dest: 'Resources/Public/js/main.js'
+			fileName: 'main.js'
 		})
+	)
+	.pipe(
+		gulp.dest( 'Resources/Public/js/' )
 	)
 });
 
@@ -168,9 +171,9 @@ gulp.task('webfonts', [ 'generate-webfonts' ], function(){
 gulp.task('clean', [
 	'webfonts',
 	'fonts',
+	'js',
 	'images',
-	'scss',
-	'js'
+	'scss'
 ], function(cb){
 	del([
 		'Resources/Temp'
