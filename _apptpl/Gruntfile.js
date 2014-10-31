@@ -292,7 +292,7 @@ module.exports = function(grunt) {
                 	{
                         expand: true,
                         cwd: 'rsc/img',
-                        src: [ '*' ],
+                        src: [ '**/*' ],
                         dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Images/'
                     },
                 	// HTML
