@@ -190,8 +190,8 @@ module.exports = function(grunt) {
         cssmin: {
             build: {
                 files: {
-                	'<%= app.config.output.path %>/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css/**/*.css' ],
-                	'<%= app.config.output.path %>/css-print/<%= pkg.name %>.min.<%= getCurrentDate() %>.css' : [ 'tpl/css-print/**/*.css' ]
+                	'<%= app.config.output.path %>/<%= cssMin %>' : [ '<%= app.config.output.path %>/<%= cssMin %>' ],
+                	'<%= app.config.output.path %>/<%= cssPrintMin %>' : [ '<%= app.config.output.path %>/<%= cssPrintMin %>' ]
                 }
             }
         },
@@ -384,7 +384,7 @@ module.exports = function(grunt) {
         connect: {
 			build: {
 				options: {
-					port: '<%= app.server.port %>',
+					port: '<%= app.config.server.port %>',
 					hostname: '*',
 					base: '<%= app.config.output.path %>/'
 				}
