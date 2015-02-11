@@ -124,7 +124,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 	"config" : {
 		"output" : {
 			// The output path of your project
-			"path" : "../../../public_html"
+			"path" : "_release"
 		},
 		"livereload" : {
 			// The livereload port
@@ -145,13 +145,17 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 		"typo3" : {
 			// Typo3 main folder where your extension is going to be saved.
 			// Inside this folder will be created based on your project_name and suffix property below.
-			"path" : "../../../typo3exts/",
+			"path" : "_typo3ext",
 			// Suffix to be appended to the project name when creating the folder
 			"suffix" : "_core"
 		}
 	},
 	// This will be the assets configuration
 	"assets" : {
+    // Tells to copy all the found fonts in these paths, in our {output.path}/fonts/ folder
+    "fonts" : [
+      "..."
+    ],
 		// Tells to build/deploy tasks, the resources and their order to be compiled to a singular JS file
 		"js" : [
 			"bower_components/...",
