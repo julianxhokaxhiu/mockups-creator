@@ -15,7 +15,7 @@
 			"host" : "localhost"
 		},
 		"typo3" : {
-			"path" : "../../../typo3exts/",
+			"path" : "_typo3ext",
 			"suffix" : "_core"
 		}
 	},
