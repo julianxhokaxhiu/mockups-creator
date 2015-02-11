@@ -1,7 +1,7 @@
 {
 	"config" : {
 		"output" : {
-			"path" : "../../../public_html"
+			"path" : "_release"
 		},
 		"livereload" : {
 			"port" : 35729,
