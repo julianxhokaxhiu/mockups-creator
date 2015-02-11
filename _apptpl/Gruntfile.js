@@ -398,7 +398,24 @@ module.exports = function(grunt) {
 					base: '<%= app.config.output.path %>/'
 				}
 			}
-		}
+		},
+        exec: {
+            npm: {
+                cmd: 'npm update'
+            },
+            bower: {
+                cmd: 'bower update'
+            }
+        },
+        periodic: {
+            update: {
+                when: 'daily',
+                tasks: [
+                    'exec:npm',
+                    'exec:bower'
+                ]
+            }
+        }
     });
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
@@ -421,6 +438,7 @@ module.exports = function(grunt) {
 
         if ( watchTask == 'all' ) {
             tasks = tasks.concat([
+                'periodic:update',
                 'clean',
                 'fontgen',
                 'webfont',

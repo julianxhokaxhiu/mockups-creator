@@ -17,6 +17,8 @@
     "grunt-tasty-swig": "julianxhokaxhiu/grunt-tasty-swig",
     "grunt-webfont": "*",
     "grunt-yui-compressor": "*",
+    "grunt-periodic": "*",
+    "grunt-exec": "*",
     "load-grunt-tasks": "*"
   }
 }
