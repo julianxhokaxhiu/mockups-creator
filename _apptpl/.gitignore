@@ -1,0 +1,10 @@
+/bower_components
+/node_modules
+/tpl/css
+/tpl/css-print
+/.sass-cache
+/_release
+/_typo3ext
+/webfonts
+/webicons
+/.grunt
