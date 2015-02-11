@@ -21,6 +21,6 @@
     "fontawesome": "*",
     "modernizr": "*",
     "detectizr": "*",
-    "SimpleStateManager": "*"
+    "enquire": "*"
   }
 }
