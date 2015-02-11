@@ -21,9 +21,9 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 
 **Backend**
 
-- Customizable [Gruntfile.js](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/Gruntfile.js).
+- Customizable [Gruntfile.js](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/Gruntfile.js).
 - [Swig Templates](http://paularmstrong.github.io/swig/) ( just like Twig, but for Javascript )
-- Template custom data customizable via JSON file ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json#L18) file )
+- Template custom data customizable via JSON file ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/app.json#L18) file )
 - Web Fonts generator ( just place your TTF or OTF fonts in the fonts folder )
 - Web Icons generator based on SVG files ( just place them in the icons folder )
 - SCSS ( with map files support so you can see from your inspector directly the SCSS file reference )
@@ -32,6 +32,7 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 - [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
 - Auto-rebuild + Live Reload when editing swig, scss or js files
 - Static file server. No more depending on Apache, Nginx, etc.
+- Auto-update, of NPM packages and Bower packages, once a day on build
 
 **Frontend**
 
@@ -39,8 +40,9 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
 - [Modernizr](http://modernizr.com/) + [Detectizr](https://github.com/barisaydinoglu/Detectizr)
-- [Simple State Manager](http://www.simplestatemanager.com/) useful for responsive websites and javascript handling
-- Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/bower.json).
+- [enquire.js](http://wicky.nillia.ms/enquire.js/) media-queries for Javascript
+- Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/bower.json).
+- Default template ( ready for IE8+, Chrome, Firefox, Safari, iOS, Android, etc. ) using the most awesome techniques out there to simply the work for you :)
 
 **Deploy**
 
@@ -67,7 +69,7 @@ Otherwise you should look at your OS documentation on how to get these binaries 
 2. Run `grunt make --app=project_name`.
 3. Wait for the cool stuff to be done
 4. Work inside the _[app](https://github.com/julianxhokaxhiu/mockups-creator/tree/master/app)/project_name/_ folder that will be created.
-5. Configure your _app/project_name/[app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json)_ with the desired values.
+5. Configure your _app/project_name/[app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/app.json)_ with the desired values.
 6. Run one of the commands down below.
 
 ---
@@ -168,7 +170,7 @@ Basically the `config.json` is the same as `app.json` and will override its sett
 # Moving from v1 to v2
 
 - `cd app/project_name` ( `project_name` is your mockup project )
-- `mv config.json app.json` and adapt your settings to the new format ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/v2/_apptpl/app.json) )
+- `mv config.json app.json` and adapt your settings to the new format ( see [app.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/app.json) )
 - `mv icons.css tpl/icons.css`
 - Copy `bower.json`, `Gruntfile.js` and `package.json` to `app/project_name`
 - Fix the `name` property inside `package.json` using your `project_name`
