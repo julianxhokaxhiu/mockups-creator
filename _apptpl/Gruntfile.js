@@ -173,14 +173,14 @@ module.exports = function(grunt) {
         autoprefixer: {
             options: {
                 browsers: [
-			"Android 2.3",
-			"Android >= 4",
-			"Chrome >= 20",
-			"Firefox >= 24",
-			"Explorer >= 8",
-			"iOS >= 6",
-			"Opera >= 12",
-			"Safari >= 6"
+                    "Android 2.3",
+                    "Android >= 4",
+                    "Chrome >= 20",
+                    "Firefox >= 24",
+                    "Explorer >= 8",
+                    "iOS >= 6",
+                    "Opera >= 12",
+                    "Safari >= 6"
                 ]
             },
             build: {
@@ -400,20 +400,46 @@ module.exports = function(grunt) {
 			}
 		},
         exec: {
-            npm: {
+            npm_update: {
                 cmd: 'npm update'
             },
-            bower: {
+            bower_update: {
                 cmd: 'bower update'
+            },
+            npm_install: {
+                cmd: 'npm install'
+            },
+            bower_install: {
+                cmd: 'bower install'
             }
         },
         periodic: {
             update: {
                 when: 'daily',
                 tasks: [
-                    'exec:npm',
-                    'exec:bower'
+                    'exec:npm_update',
+                    'exec:bower_update'
                 ]
+            },
+            npm_install: {
+                when: 'newer',
+                tasks: [
+                    'exec:npm_install',
+                    'exec:npm_update'
+                ],
+                files: [{
+                    src: [ 'package.json' ]
+                }]
+            },
+            bower_install: {
+                when: 'newer',
+                tasks: [
+                    'exec:bower_install',
+                    'exec:bower_update'
+                ],
+                files: [{
+                    src: [ 'bower.json' ]
+                }]
             }
         }
     });
@@ -438,7 +464,7 @@ module.exports = function(grunt) {
 
         if ( watchTask == 'all' ) {
             tasks = tasks.concat([
-                'periodic:update',
+                'periodic',
                 'clean',
                 'fontgen',
                 'webfont',
