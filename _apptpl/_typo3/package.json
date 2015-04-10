@@ -1,18 +1,19 @@
 {
-    "name": "<%= appName %>",
-    "dependencies": {
-    	"gulp": "*",
-        "gulp-concat": "*",
-        "gulp-filter": "*",
-        "gulp-run": "*",
-        "gulp-sass": "*",
-        "gulp-closurecompiler": "*",
-        "gulp-fontgen": "*",
-        "gulp-iconfont": "*",
-        "gulp-consolidate": "*",
-        "gulp-rename": "*",
-        "gulp-yuicompressor": "*",
-        "lodash": "*",
-        "del": "*"
-    }
+  "name": "<%= appName %>",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-autoprefixer": "*",
+    "grunt-closurecompiler": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-fontgen": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-webfont": "*",
+    "grunt-yui-compressor": "julianxhokaxhiu/grunt-yui-compressor#develop",
+    "grunt-periodic": "julianxhokaxhiu/grunt-periodic#when-newer",
+    "grunt-exec": "*",
+    "load-grunt-tasks": "*"
+  }
 }
