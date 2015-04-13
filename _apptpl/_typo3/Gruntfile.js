@@ -42,8 +42,8 @@ module.exports = function(grunt) {
                 force: true
             },
             output: [
-                'Resources/Temp/*',
-                'Resources/Public/*',
+                'Resources/Temp',
+                'Resources/Public',
                 'Resources/Private/Scss/_<%= pkg.name %>-icons.scss'
             ],
             cssFiles: [
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 'Resources/Public/css-print/*.map'
             ],
             temp: [
-                'Resources/Temp/*'
+                'Resources/Temp'
             ]
         },
 		sass: {
@@ -104,18 +104,18 @@ module.exports = function(grunt) {
         concat: {
         	webfonts: {
         		files: {
-        			'Resources/Public/css/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ],
-        			'Resources/Public/css-print/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ]
+        			'Resources/Temp/css/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ],
+        			'Resources/Temp/css-print/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ]
         		}
         	},
             css: {
                 filter: 'isFile',
-                src: 'tpl/css/**/*.css',
+                src: 'Resources/Temp/css/**/*.css',
                 dest: '<%= cssMin %>'
             },
             cssPrint: {
                 filter: 'isFile',
-                src: 'tpl/css-print/**/*.css',
+                src: 'Resources/Temp/css-print/**/*.css',
                 dest: '<%= cssPrintMin %>'
             },
             js: {
@@ -206,6 +206,13 @@ module.exports = function(grunt) {
                             '*.scss'
                         ],
                         dest: 'Resources/Private/Scss/'
+                    },
+                    // Images
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: 'Resources/Private/Images/*',
+                        dest: 'Resources/Public/img/'
                     }
                 ]
             }
