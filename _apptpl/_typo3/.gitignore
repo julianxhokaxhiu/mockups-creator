@@ -2,7 +2,5 @@
 *
 # Except this file
 !.gitignore
-!gulpfile.js
-!icons.css
-!package.json
+!Gruntfile.js
 !README.md
