@@ -340,7 +340,7 @@ module.exports = function(grunt) {
                 {
                   expand: true,
                   flatten: true,
-                	src: [ 'app.json', 'bower.json' ],
+                	src: [ 'app.json', 'bower.json', 'package.json' ],
                 	dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
                 },
                 /// Typo3 related stuff
