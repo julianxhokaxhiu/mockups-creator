@@ -49,9 +49,6 @@ module.exports = function(grunt) {
         cssFiles: [
           'Resources/Public/css/*'
         ],
-        mapFiles: [
-          'Resources/Public/css/*.map'
-        ],
         temp: [
           'Resources/Temp'
         ]
@@ -65,13 +62,7 @@ module.exports = function(grunt) {
   					'Resources/Temp/css/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/screen.scss' ],
   					'Resources/Temp/css-print/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/print.scss' ]
   				}
-  			},
-        deploy: {
-          files: {
-            'Resources/Temp/css/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/screen.scss' ],
-            'Resources/Temp/css-print/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/print.scss' ]
-          }
-        }
+  			}
   		},
   		fontgen: {
   			build: {
@@ -145,7 +136,13 @@ module.exports = function(grunt) {
         	options: {
         		map: true
         	},
-          src: 'Resources/Temp/css/*.css'
+          src: 'Resources/Public/css/*.css'
+        },
+        deploy: {
+          options: {
+            map: false
+          },
+          src: 'Resources/Public/css/*.css'
         }
       },
       cssmin: {
@@ -308,7 +305,6 @@ module.exports = function(grunt) {
             'concat:cssPrint',
             'concat:js',
             'autoprefixer:build',
-            'clean:mapFiles',
             'clean:temp'
           ]);
       } else if ( watchTask == 'css' ) {
@@ -339,7 +335,6 @@ module.exports = function(grunt) {
       'cssmin',
       'autoprefixer:deploy',
       'closurecompiler',
-      'clean:mapFiles',
       'clean:temp'
     ]);
 
