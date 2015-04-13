@@ -47,12 +47,10 @@ module.exports = function(grunt) {
           'Resources/Private/Scss/_<%= pkg.name %>-icons.scss'
         ],
         cssFiles: [
-          'Resources/Public/css/*.css',
-          'Resources/Public/css-print/*.css'
+          'Resources/Public/css/*'
         ],
         mapFiles: [
-          'Resources/Public/css/*.map',
-          'Resources/Public/css-print/*.map'
+          'Resources/Public/css/*.map'
         ],
         temp: [
           'Resources/Temp'
@@ -148,12 +146,6 @@ module.exports = function(grunt) {
         		map: true
         	},
           src: 'Resources/Temp/css/*.css'
-        },
-        deploy: {
-        	options: {
-        		map: false
-        	},
-        	src: 'Resources/Temp/css/*.css'
         }
       },
       cssmin: {
@@ -179,23 +171,6 @@ module.exports = function(grunt) {
           }
       },
       copy: {
-          build: {
-              files: [
-                // The project CSS and JS files
-                {
-                    expand: true,
-                    cwd: 'Resources/Temp/',
-                    src: [
-                        'css/**/*.css',
-                        'css-print/**/*.css',
-                        'css/**/*.map',
-                        'css-print/**/*.map',
-                        'js/**/*.js'
-                    ],
-                    dest: 'Resources/Public/'
-                }
-              ]
-            },
           deploy: {
               files: [
               	// External Packages Fonts
@@ -307,66 +282,68 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
-        grunt.warn('No task name specified.\n\nAvailable tasks: build, deploy"\n\n');
+      grunt.warn('No task name specified.\n\nAvailable tasks: build, deploy"\n\n');
     });
 
     grunt.registerTask('build', 'Build a mockup and watch for file modifications', [
-		'rebuild',
-		'watch'
+  		'rebuild',
+  		'watch'
     ]);
 
     grunt.registerTask('rebuild', 'Build a mockup without watching for file modifications', function ( watchTask ) {
-        var tasks = [];
+      var tasks = [];
 
-        if ( watchTask === undefined ) watchTask = 'all';
+      if ( watchTask === undefined ) watchTask = 'all';
 
-        if ( watchTask == 'all' ) {
-            tasks = tasks.concat([
-                'periodic',
-                'clean',
-                'fontgen',
-                'webfont',
-                'concat:webfonts',
-                'sass',
-                'concat:js',
-                'copy',
-                'autoprefixer:build',
-                'clean:mapFiles',
-                'clean:temp'
-            ]);
-        } else if ( watchTask == 'css' ) {
-            tasks = tasks.concat([
-                'clean:cssFiles',
-                'sass',
-                'copy',
-                'autoprefixer:build'
-            ]);
-        } else if ( watchTask == 'js' ) {
-            tasks = tasks.concat([
-                'concat:js',
-                'copy'
-            ]);
-        }
-        grunt.task.run(tasks);
+      if ( watchTask == 'all' ) {
+          tasks = tasks.concat([
+            'periodic',
+            'clean',
+            'fontgen',
+            'webfont',
+            'copy',
+            'concat:webfonts',
+            'sass',
+            'concat:css',
+            'concat:cssPrint',
+            'concat:js',
+            'autoprefixer:build',
+            'clean:mapFiles',
+            'clean:temp'
+          ]);
+      } else if ( watchTask == 'css' ) {
+          tasks = tasks.concat([
+            'clean:cssFiles',
+            'sass',
+            'concat:css',
+            'concat:cssPrint',
+            'autoprefixer:build'
+          ]);
+      } else if ( watchTask == 'js' ) {
+          tasks = tasks.concat([
+            'concat:js'
+          ]);
+      }
+      grunt.task.run(tasks);
     });
 
     grunt.registerTask('build_deploy', 'Build a mockup ready for deployment sync', [
     	'clean',
-        'fontgen',
-        'webfont',
-        'concat:webfonts',
-        'sass',
-        'concat:css',
-        'concat:cssPrint',
-        'cssmin',
-        'closurecompiler',
-        'copy',
-        'autoprefixer:deploy',
-        'clean:mapFiles',
-        'clean:temp'
+      'fontgen',
+      'webfont',
+      'copy',
+      'concat:webfonts',
+      'sass',
+      'concat:css',
+      'concat:cssPrint',
+      'cssmin',
+      'autoprefixer:deploy',
+      'closurecompiler',
+      'clean:mapFiles',
+      'clean:temp'
     ]);
 
     grunt.registerTask('deploy', 'Deploy a mockup to the Mockups Server', [
-		'build_deploy'
+		  'build_deploy'
     ]);
 };
