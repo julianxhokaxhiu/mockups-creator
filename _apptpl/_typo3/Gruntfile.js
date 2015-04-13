@@ -28,259 +28,282 @@ module.exports = function(grunt) {
 
     // Configure the tasks
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        app: grunt.file.readJSON('app.json'),
-        cssMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css',
-        cssPrintMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.print.css',
-        jsMin: 'Resources/Public/js/<%= pkg.name %>.min.<%= getCurrentDate() %>.js',
-        getCurrentDate: function() {
-            var date = new Date();
-            return date.getDate() + '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
+      pkg: grunt.file.readJSON('package.json'),
+      app: grunt.file.readJSON('app.json'),
+      cssMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css',
+      cssPrintMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.print.css',
+      jsMin: 'Resources/Public/js/<%= pkg.name %>.min.<%= getCurrentDate() %>.js',
+      getCurrentDate: function() {
+        var date = new Date();
+        return date.getDate() + '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
+      },
+      clean: {
+        options: {
+          force: true
         },
-        clean: {
-            options: {
-                force: true
-            },
-            output: [
-                'Resources/Temp',
-                'Resources/Public',
-                'Resources/Private/Scss/_<%= pkg.name %>-icons.scss'
-            ],
-            cssFiles: [
-                'Resources/Public/css/*.css',
-                'Resources/Public/css-print/*.css'
-            ],
-            mapFiles: [
-                'Resources/Public/css/*.map',
-                'Resources/Public/css-print/*.map'
-            ],
-            temp: [
-                'Resources/Temp'
-            ]
+        output: [
+          'Resources/Temp',
+          'Resources/Public',
+          'Resources/Private/Scss/_<%= pkg.name %>-icons.scss'
+        ],
+        cssFiles: [
+          'Resources/Public/css/*.css',
+          'Resources/Public/css-print/*.css'
+        ],
+        mapFiles: [
+          'Resources/Public/css/*.map',
+          'Resources/Public/css-print/*.map'
+        ],
+        temp: [
+          'Resources/Temp'
+        ]
+      },
+  		sass: {
+        options: {
+          style: 'compressed'
         },
-		sass: {
-            options: {
-                style: 'compressed'
-            },
-			build: {
-				files: {
-					'Resources/Public/css/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/screen.scss' ],
-					'Resources/Public/css-print/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/print.scss' ]
-				}
-			}
-		},
-		fontgen: {
-			build: {
-				options: {
-					path_prefix: '../fonts/'
-				},
-				files: {
-					'Resources/Temp/webfonts/' : [
-		            	'Resources/Private/Fonts/*.otf',
-						'Resources/Private/Fonts/*.ttf'
-		            ]
-				}
-			}
-		},
-		webfont: {
-			icons: {
-				src: 'Resources/Private/Icons/*.svg',
-				dest: 'Resources/Temp/webicons/',
-                destCss: 'Resources/Private/Scss/',
-				options: {
-					template: 'Resources/Private/icons.css',
-                    relativeFontPath: '../fonts/',
-					font: '<%= pkg.name %>-icons',
-                    stylesheet: 'scss',
-                    htmlDemo: false,
-                    templateOptions: {
-                        baseClass: '<%= pkg.name %>-icon',
-                        classPrefix: '<%= pkg.name %>-icon-',
-                        mixinPrefix: '<%= pkg.name %>-icon-'
-                    }
-				}
-			}
-		},
-        concat: {
-        	webfonts: {
-        		files: {
-        			'Resources/Temp/css/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ],
-        			'Resources/Temp/css-print/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ]
-        		}
-        	},
-            css: {
-                filter: 'isFile',
-                src: 'Resources/Temp/css/**/*.css',
-                dest: '<%= cssMin %>'
-            },
-            cssPrint: {
-                filter: 'isFile',
-                src: 'Resources/Temp/css-print/**/*.css',
-                dest: '<%= cssPrintMin %>'
-            },
-            js: {
-            	files: {
-            		'<%= jsMin %>' : '<%= app.assets.js %>'
-            	}
-            }
-        },
-        autoprefixer: {
-            options: {
-                browsers: [
-                    "Android 2.3",
-                    "Android >= 4",
-                    "Chrome >= 20",
-                    "Firefox >= 24",
-                    "Explorer >= 8",
-                    "iOS >= 6",
-                    "Opera >= 12",
-                    "Safari >= 6"
-                ]
-            },
-            build: {
-            	options: {
-            		map: true
-            	},
-                src: 'Resources/Public/css/*.css'
-            },
-            deploy: {
-            	options: {
-            		map: false
-            	},
-            	src: 'Resources/Public/css/*.css'
-            }
-        },
-        cssmin: {
-            build: {
-                files: {
-                	'<%= cssMin %>' : [ '<%= cssMin %>' ],
-                	'<%= cssPrintMin %>' : [ '<%= cssPrintMin %>' ]
-                }
-            }
-        },
-        closurecompiler: {
-            build: {
-            	files: {
-            		'<%= jsMin %>': '<%= app.assets.js %>'
-            	},
-            	options: {
-	                // Any options supported by Closure Compiler, for example:
-	                "compilation_level": "SIMPLE_OPTIMIZATIONS",
-
-	                // Plus a simultaneous processes limit
-	                "max_processes": 5,
-	            }
-            }
-        },
-        copy: {
-            build: {
-                files: [
-                	// External Packages Fonts
-                	{
-                		expand: true,
-                		flatten: true,
-                		src: '<%= app.assets.fonts %>',
-                		dest: 'Resources/Public/fonts/'
-                	},
-                	// The project Webfonts
-                	{
-                		expand: true,
-                		flatten: true,
-                		cwd: 'Resources/Temp/webfonts/',
-                		src: ['**/*.{ttf,woff,eot,svg,otf}'],
-                		dest: 'Resources/Public/fonts/'
-                	},
-                	// The project Webicons
-                	{
-                		expand: true,
-                		flatten: true,
-                		cwd: 'Resources/Temp/webicons/',
-                		src: ['**/*.{ttf,woff,eot,svg,otf}'],
-                		dest: 'Resources/Public/fonts/'
-                	},
-                	// Webicons sass generated file
-                	{
-                        expand: true,
-                        cwd: 'Resources/Temp/webicons/',
-                        src: [
-                            '*.scss'
-                        ],
-                        dest: 'Resources/Private/Scss/'
-                    },
-                    // Images
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: 'Resources/Private/Images/*',
-                        dest: 'Resources/Public/img/'
-                    }
-                ]
-            }
-        },
-        watch: {
-        	options: {
-        		livereload: '<%= app.config.livereload.port %>'
-        	},
-            css: {
-                files: [
-                    'Resources/Private/**/*.scss',
-                ],
-                tasks: [
-                    'rebuild:css'
-                ]
-            },
-            js: {
-                files: [
-                    'Resources/Private/**/*.js'
-                ],
-                tasks: [
-                    'rebuild:js'
-                ]
-            }
-        },
-        exec: {
-            npm_update: {
-                cmd: 'npm update'
-            },
-            bower_update: {
-                cmd: 'bower update'
-            },
-            npm_install: {
-                cmd: 'npm install'
-            },
-            bower_install: {
-                cmd: 'bower install'
-            }
-        },
-        periodic: {
-            update: {
-                when: 'daily',
-                tasks: [
-                    'exec:npm_update',
-                    'exec:bower_update'
-                ]
-            },
-            npm_install: {
-                when: 'newer',
-                tasks: [
-                    'exec:npm_install',
-                    'exec:npm_update'
-                ],
-                files: [{
-                    src: [ 'package.json' ]
-                }]
-            },
-            bower_install: {
-                when: 'newer',
-                tasks: [
-                    'exec:bower_install',
-                    'exec:bower_update'
-                ],
-                files: [{
-                    src: [ 'bower.json' ]
-                }]
-            }
+  			build: {
+  				files: {
+  					'Resources/Temp/css/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/screen.scss' ],
+  					'Resources/Temp/css-print/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/print.scss' ]
+  				}
+  			},
+        deploy: {
+          files: {
+            'Resources/Temp/css/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/screen.scss' ],
+            'Resources/Temp/css-print/99_<%= pkg.name %>.css' : [ 'Resources/Private/Scss/print.scss' ]
+          }
         }
+  		},
+  		fontgen: {
+  			build: {
+  				options: {
+  					path_prefix: '../fonts/'
+  				},
+  				files: {
+  					'Resources/Temp/webfonts/' : [
+            	'Resources/Private/Fonts/*.otf',
+    					'Resources/Private/Fonts/*.ttf'
+            ]
+  				}
+  			}
+  		},
+  		webfont: {
+  			icons: {
+  				src: 'Resources/Private/Icons/*.svg',
+  				dest: 'Resources/Temp/webicons/',
+          destCss: 'Resources/Private/Scss/',
+  				options: {
+    				template: 'Resources/Private/icons.css',
+            relativeFontPath: '../fonts/',
+    				font: '<%= pkg.name %>-icons',
+            stylesheet: 'scss',
+            htmlDemo: false,
+            templateOptions: {
+              baseClass: '<%= pkg.name %>-icon',
+              classPrefix: '<%= pkg.name %>-icon-',
+              mixinPrefix: '<%= pkg.name %>-icon-'
+            }
+  			  }
+  			}
+  		},
+      concat: {
+      	webfonts: {
+      		files: {
+      			'Resources/Temp/css/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ],
+      			'Resources/Temp/css-print/98_webfonts.css' : [ 'Resources/Temp/webfonts/*.css' ]
+      		}
+      	},
+        css: {
+            filter: 'isFile',
+            src: 'Resources/Temp/css/**/*.css',
+            dest: '<%= cssMin %>'
+        },
+        cssPrint: {
+            filter: 'isFile',
+            src: 'Resources/Temp/css-print/**/*.css',
+            dest: '<%= cssPrintMin %>'
+        },
+        js: {
+        	files: {
+        		'<%= jsMin %>' : '<%= app.assets.js %>'
+        	}
+        }
+      },
+      autoprefixer: {
+        options: {
+          browsers: [
+            "Android 2.3",
+            "Android >= 4",
+            "Chrome >= 20",
+            "Firefox >= 24",
+            "Explorer >= 8",
+            "iOS >= 6",
+            "Opera >= 12",
+            "Safari >= 6"
+          ]
+        },
+        build: {
+        	options: {
+        		map: true
+        	},
+          src: 'Resources/Temp/css/*.css'
+        },
+        deploy: {
+        	options: {
+        		map: false
+        	},
+        	src: 'Resources/Temp/css/*.css'
+        }
+      },
+      cssmin: {
+          build: {
+              files: {
+              	'<%= cssMin %>' : [ '<%= cssMin %>' ],
+              	'<%= cssPrintMin %>' : [ '<%= cssPrintMin %>' ]
+              }
+          }
+      },
+      closurecompiler: {
+          build: {
+          	files: {
+          		'<%= jsMin %>': '<%= app.assets.js %>'
+          	},
+          	options: {
+                // Any options supported by Closure Compiler, for example:
+                "compilation_level": "SIMPLE_OPTIMIZATIONS",
+
+                // Plus a simultaneous processes limit
+                "max_processes": 5,
+            }
+          }
+      },
+      copy: {
+          build: {
+              files: [
+                // The project CSS and JS files
+                {
+                    expand: true,
+                    cwd: 'Resources/Temp/',
+                    src: [
+                        'css/**/*.css',
+                        'css-print/**/*.css',
+                        'css/**/*.map',
+                        'css-print/**/*.map',
+                        'js/**/*.js'
+                    ],
+                    dest: 'Resources/Public/'
+                }
+              ]
+            },
+          deploy: {
+              files: [
+              	// External Packages Fonts
+              	{
+              		expand: true,
+              		flatten: true,
+              		src: '<%= app.assets.fonts %>',
+              		dest: 'Resources/Public/fonts/'
+              	},
+              	// The project Webfonts
+              	{
+              		expand: true,
+              		flatten: true,
+              		cwd: 'Resources/Temp/webfonts/',
+              		src: ['**/*.{ttf,woff,eot,svg,otf}'],
+              		dest: 'Resources/Public/fonts/'
+              	},
+              	// The project Webicons
+              	{
+              		expand: true,
+              		flatten: true,
+              		cwd: 'Resources/Temp/webicons/',
+              		src: ['**/*.{ttf,woff,eot,svg,otf}'],
+              		dest: 'Resources/Public/fonts/'
+              	},
+              	// Webicons sass generated file
+              	{
+                  expand: true,
+                  cwd: 'Resources/Temp/webicons/',
+                  src: [
+                    '*.scss'
+                  ],
+                  dest: 'Resources/Private/Scss/'
+                },
+                // Images
+                {
+                  expand: true,
+                  flatten: true,
+                  src: 'Resources/Private/Images/*',
+                  dest: 'Resources/Public/img/'
+                }
+              ]
+          }
+      },
+      watch: {
+      	options: {
+      		livereload: '<%= app.config.livereload.port %>'
+      	},
+          css: {
+              files: [
+                  'Resources/Private/**/*.scss',
+              ],
+              tasks: [
+                  'rebuild:css'
+              ]
+          },
+          js: {
+              files: [
+                  'Resources/Private/**/*.js'
+              ],
+              tasks: [
+                  'rebuild:js'
+              ]
+          }
+      },
+      exec: {
+          npm_update: {
+              cmd: 'npm update'
+          },
+          bower_update: {
+              cmd: 'bower update'
+          },
+          npm_install: {
+              cmd: 'npm install'
+          },
+          bower_install: {
+              cmd: 'bower install'
+          }
+      },
+      periodic: {
+          update: {
+              when: 'daily',
+              tasks: [
+                  'exec:npm_update',
+                  'exec:bower_update'
+              ]
+          },
+          npm_install: {
+              when: 'newer',
+              tasks: [
+                  'exec:npm_install',
+                  'exec:npm_update'
+              ],
+              files: [{
+                  src: [ 'package.json' ]
+              }]
+          },
+          bower_install: {
+              when: 'newer',
+              tasks: [
+                  'exec:bower_install',
+                  'exec:bower_update'
+              ],
+              files: [{
+                  src: [ 'bower.json' ]
+              }]
+          }
+      }
     });
 
     grunt.registerTask('default', 'Gruntfile for Mockups', function() {
