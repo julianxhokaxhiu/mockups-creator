@@ -284,67 +284,75 @@ module.exports = function(grunt) {
             		// Icons
             		{
             			expand: true,
-                		flatten: true,
-                		cwd: 'icons/',
-                		src: [ '*.svg' ],
-                		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Icons/'
+              		flatten: true,
+              		cwd: 'icons/',
+              		src: [ '*.svg' ],
+              		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Icons/'
             		},
-                	// Fonts
-                	{
-                		expand: true,
-                		flatten: true,
-                		cwd: 'fonts/',
-                		src: [ '*' ],
-                		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Fonts/'
-                	},
-                	// Images
-                	{
-                        expand: true,
-                        cwd: 'rsc/img',
-                        src: [ '**/*' ],
-                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Images/'
-                    },
-                	// HTML
-                    {
-                        expand: true,
-                        flatten: true,
-                        cwd: '<%= app.config.output.path %>/',
-                        src: ['*.html'],
-                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Templates/Html/'
-                    },
-                    // SCSS
-                    {
-                        expand: true,
-                        flatten: true,
-                        cwd: 'tpl/scss/',
-                        src: ['*.scss'],
-                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Scss/'
-                    },
-                    // Javascript
-                    {
-                    	expand: true,
-                        flatten: true,
-                        cwd: 'tpl/js/',
-                        src: ['*.js'],
-                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/JavaScript/'
-                    },
-                    // Bower + App configuration
-                    {
-                        expand: true,
-                        flatten: true,
-                    	src: [ 'app.json', 'bower.json' ],
-                    	dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
-                    },
-                    /// Typo3 related stuff
-                    {
-                        expand: true,
-                        flatten: true,
-                        dot: true,
-                        cwd: '_typo3/',
-                        src: [ '*' ],
-                        dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
-                    }
-                ]
+                // Icons CSS template
+                {
+                  expand: true,
+                  flatten: true,
+                  cwd: 'tpl/',
+                  src: [ 'icons.css' ],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/'
+                },
+              	// Fonts
+              	{
+              		expand: true,
+              		flatten: true,
+              		cwd: 'fonts/',
+              		src: [ '*' ],
+              		dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Fonts/'
+              	},
+              	// Images
+              	{
+                  expand: true,
+                  cwd: 'rsc/img',
+                  src: [ '**/*' ],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Images/'
+                },
+              	// HTML
+                {
+                  expand: true,
+                  flatten: true,
+                  cwd: '<%= app.config.output.path %>/',
+                  src: ['*.html'],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Templates/Html/'
+                },
+                // SCSS
+                {
+                  expand: true,
+                  flatten: true,
+                  cwd: 'tpl/scss/',
+                  src: ['*.scss'],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/Scss/'
+                },
+                // Javascript
+                {
+                	expand: true,
+                  flatten: true,
+                  cwd: 'tpl/js/',
+                  src: ['*.js'],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/JavaScript/'
+                },
+                // Bower + App configuration
+                {
+                  expand: true,
+                  flatten: true,
+                	src: [ 'app.json', 'bower.json' ],
+                	dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
+                },
+                /// Typo3 related stuff
+                {
+                  expand: true,
+                  flatten: true,
+                  dot: true,
+                  cwd: '_typo3/',
+                  src: [ '*' ],
+                  dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
+                }
+              ]
             }
         },
         watch: {
