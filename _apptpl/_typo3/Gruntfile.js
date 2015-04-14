@@ -115,7 +115,10 @@ module.exports = function(grunt) {
         },
         js: {
         	files: {
-        		'<%= jsMin %>' : '<%= app.assets.js %>'
+        		'<%= jsMin %>' : [
+              '<%= app.assets.js %>',
+              'Resources/Private/JavaScript/**/*.js'
+            ]
         	}
         }
       },
