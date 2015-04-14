@@ -205,8 +205,8 @@ module.exports = function(grunt) {
                 // Images
                 {
                   expand: true,
-                  flatten: true,
-                  src: 'Resources/Private/Images/*',
+                  cwd: 'Resources/Private/Images/',
+                  src: '**/*',
                   dest: 'Resources/Public/img/'
                 }
               ]
