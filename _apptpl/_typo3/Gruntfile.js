@@ -30,13 +30,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
       app: grunt.file.readJSON('app.json'),
-      cssMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.css',
-      cssPrintMin: 'Resources/Public/css/<%= pkg.name %>.min.<%= getCurrentDate() %>.print.css',
-      jsMin: 'Resources/Public/js/<%= pkg.name %>.min.<%= getCurrentDate() %>.js',
-      getCurrentDate: function() {
-        var date = new Date();
-        return date.getDate() + '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
-      },
+      cssMin: 'Resources/Public/css/<%= pkg.name %>.min.css',
+      cssPrintMin: 'Resources/Public/css/<%= pkg.name %>.min.print.css',
+      jsMin: 'Resources/Public/js/<%= pkg.name %>.min.js',
       clean: {
         options: {
           force: true
