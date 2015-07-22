@@ -26,10 +26,10 @@
     {% block scripts %}
     {% endblock %}
     <!--[if (!IE)|(gt IE 8)]><!-->
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <!--<![endif]-->
     <!--[if lt IE 9]>
-      <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
       <script src="//oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
