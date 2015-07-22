@@ -36,9 +36,10 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 
 **Frontend**
 
-- jQuery 2.x ( or 1.x for older browsers )
-- Bootstrap 3.x ( using bower to keep it aligned with latest updates )
-- Fontawesome 4.x ( using bower to keep it aligned with latest updates )
+- [jQuery](https://jquery.com/) 2.x ( or 1.x for older browsers )
+- [Bootstrap](http://getbootstrap.com/) 3.x ( using bower to keep it aligned with latest updates )
+- [Fontawesome](http://fortawesome.github.io/Font-Awesome/) 4.x ( using bower to keep it aligned with latest updates )
+- [Ion Icons](http://ionicons.com/) 2.x ( using bower to keep it aligned with latest updates )
 - [Modernizr](http://modernizr.com/) + [Detectizr](https://github.com/barisaydinoglu/Detectizr)
 - [bootstrap-toolkit](https://github.com/maciej-gurban/responsive-bootstrap-toolkit) media-queries for Javascript
 - Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/bower.json).
