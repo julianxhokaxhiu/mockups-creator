@@ -1,1 +1,6 @@
+// Erase border-radius
+$border-radius-base: 0;
+$border-radius-small: $border-radius-base;
+$border-radius-large: $border-radius-base;
+// Bootstrap Icons Path
 $icon-font-path: '../fonts/';
