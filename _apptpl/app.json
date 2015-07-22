@@ -27,8 +27,8 @@
 		"js" : [
 			"bower_components/modernizr/modernizr.js",
 			"bower_components/detectizr/dist/detectizr.js",
-			"bower_components/enquire/dist/enquire.js",
 			"bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
+      "bower_components/responsive-toolkit/dist/bootstrap-toolkit.js",
 			"tpl/js/*.js"
 		]
 	},
