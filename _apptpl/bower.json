@@ -19,6 +19,7 @@
   "dependencies": {
     "bootstrap-sass-official": "*",
     "fontawesome": "*",
+    "ionicons": "*",
     "modernizr": "*",
     "detectizr": "*",
     "responsive-toolkit": "*"
