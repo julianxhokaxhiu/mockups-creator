@@ -40,7 +40,7 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 - Bootstrap 3.x ( using bower to keep it aligned with latest updates )
 - Fontawesome 4.x ( using bower to keep it aligned with latest updates )
 - [Modernizr](http://modernizr.com/) + [Detectizr](https://github.com/barisaydinoglu/Detectizr)
-- [enquire.js](http://wicky.nillia.ms/enquire.js/) media-queries for Javascript
+- [bootstrap-toolkit](https://github.com/maciej-gurban/responsive-bootstrap-toolkit) media-queries for Javascript
 - Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/bower.json).
 - Default template ( ready for IE8+, Chrome, Firefox, Safari, iOS, Android, etc. ) using the most awesome techniques out there to simply the work for you :)
 
@@ -50,7 +50,7 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 
 **Output**
 
-- [TYPO3](http://typo3.org/) extension output with Gulp script for building again all the "opened" files like SCSS, JS, Fonts and Icons
+- [TYPO3](http://typo3.org/) extension output with Grunt script for building again all the "opened" files like SCSS, JS, Fonts and Icons
 
 # Requirements
 
