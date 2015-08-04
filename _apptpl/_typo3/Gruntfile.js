@@ -156,7 +156,10 @@ module.exports = function(grunt) {
       closurecompiler: {
           build: {
           	files: {
-          		'<%= jsMin %>': '<%= app.assets.js %>'
+          		'<%= jsMin %>': [
+                '<%= app.assets.js %>',
+                'Resources/Private/JavaScript/**/*.js'
+              ]
           	},
           	options: {
                 // Any options supported by Closure Compiler, for example:
