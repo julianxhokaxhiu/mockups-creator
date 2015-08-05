@@ -2,7 +2,7 @@
   $(function(){
     var $window = $(window),
         $html = $('html'),
-        $body = $('body'),
+        $body = $('body');
 
     // Your code here
   });
