@@ -31,6 +31,9 @@ RUN npm install
 ## Tell Docker that this path is gonna be a real path on the Host
 VOLUME "/src/app/"
 
+## Prepare Host keys for SSH connections
+RUN ssh-keygen -A
+
 ## Start SSH Server
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
