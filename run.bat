@@ -1,2 +1,3 @@
 @echo off
-start "docker run -v ./app:/src/app"
+docker build . -t "jx/mockups-creator"
+docker run -v ./app:/src/app "jx/mockups-creator"
