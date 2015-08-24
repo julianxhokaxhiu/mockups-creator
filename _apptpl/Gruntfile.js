@@ -219,6 +219,16 @@ module.exports = function(grunt) {
 	            }
             }
         },
+        imagemin: {
+          build: {
+            files: [{
+              expand: true,                  // Enable dynamic expansion
+              cwd: '<%= app.config.output.path %>/',                   // Src matches are relative to this path
+              src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+              dest: '<%= app.config.output.path %>/'                  // Destination path prefix
+            }]
+          }
+        },
         copy: {
             build: {
                 files: [
@@ -529,6 +539,7 @@ module.exports = function(grunt) {
         'tasty_swig:deploy',
         'copy:deploy',
         'autoprefixer:deploy',
+        'imagemin',
         'clean:mapFiles',
         'clean:webfonts',
         'clean:webicons'
