@@ -173,6 +173,12 @@ module.exports = function(grunt) {
       copy: {
           deploy: {
               files: [
+                // Internal Misc files
+                {
+                  expand: true,
+                  src: 'Resources/Private/Misc/**/*',
+                  dest: 'Resources/Public/'
+                },
               	// External Packages Fonts
               	{
               		expand: true,
@@ -217,7 +223,7 @@ module.exports = function(grunt) {
       },
       watch: {
       	options: {
-      		livereload: '<%= app.config.livereload.port %>'
+      		livereload: -1
       	},
           css: {
               files: [
