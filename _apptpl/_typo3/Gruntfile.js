@@ -176,7 +176,8 @@ module.exports = function(grunt) {
                 // Internal Misc files
                 {
                   expand: true,
-                  src: 'Resources/Private/Misc/**/*',
+                  cwd: 'Resources/Private/Misc/',
+                  src: [ '**/*' ],
                   dest: 'Resources/Public/'
                 },
               	// External Packages Fonts
