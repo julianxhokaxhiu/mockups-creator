@@ -119,7 +119,8 @@ module.exports = function(grunt) {
 		fontgen: {
 			build: {
 				options: {
-					path_prefix: '../fonts/'
+					path_prefix: '../fonts/',
+          stylesheet: 'webfonts/fonts.css'
 				},
 				files: {
 					'webfonts/' : [
