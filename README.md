@@ -59,7 +59,7 @@ To run this you need these binaries to be available in your system
 
 1. `fontforge` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) and [grunt-webfont](https://github.com/sapegin/grunt-webfont) )
 2. `ttf2eot` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) )
-3. `batik-ttf2svg` ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) )
+3. `batik-ttf2svg` ( on OSX ) or `ttf2svg` ( on Linux ) ( required by [grunt-fontgen](https://github.com/agentk/grunt-fontgen) ) 
 
 To test if they're working just type these names in your terminal and if they're working you're good to go.
 Otherwise you should look at your OS documentation on how to get these binaries working.
