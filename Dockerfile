@@ -10,7 +10,7 @@ RUN pacman-db-upgrade
 
 ## Installing dependencies ##
 RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed openssh wget fontforge nodejs npm jre8-openjdk java-batik
-RUN npm install -g ttf2eot bower
+RUN npm install -g ttf2eot bower ttf2svg
 
 ## Install Batik Java Binaries Manually
 RUN wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /root
