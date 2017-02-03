@@ -1,12 +1,5 @@
-FROM base/archlinux
-MAINTAINER Julian Xhokaxhiu <info@julianxhokaxhiu.com>
-
-## Update the keyring key database
-RUN pacman-key --init && pacman-key --populate archlinux && pacman-key --refresh-keys
-
-## Upgrade the system to max so we not gonna have package conflicts during installation
-RUN yes '' | pacman -Syu --noprogressbar --noconfirm
-RUN pacman-db-upgrade
+FROM finalduty/archlinux
+MAINTAINER Julian Xhokaxhiu < info at julianxhokaxhiu dot com >
 
 ## Installing dependencies ##
 RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed openssh wget fontforge nodejs npm jre8-openjdk java-batik
