@@ -1,32 +1,62 @@
 FROM finalduty/archlinux
 MAINTAINER Julian Xhokaxhiu < info at julianxhokaxhiu dot com >
 
-## Installing dependencies ##
-RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed openssh wget fontforge nodejs npm jre8-openjdk java-batik
-RUN npm install -g ttf2eot bower ttf2svg
+# Environment variables
+#######################
 
-## Install Batik Java Binaries Manually
-RUN wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /root
-RUN tar xzf /root/batik-bin-1.8.tar.gz -C /usr/share/java
+ENV DATA_DIR /app
 
-## Executable script to get the command "batik-ttf2svg" working
-RUN echo $'#!/bin/bash\n\
-java -Djava.awt.headless=true -jar /usr/share/java/batik-1.8/batik-ttf2svg-1.8.jar "$@"\n'\
->> /usr/local/bin/batik-ttf2svg
-RUN chmod 0755 /usr/local/bin/batik-ttf2svg
-RUN chown root:root /usr/local/bin/batik-ttf2svg
+# Configurable environment variables
+####################################
 
-## Install mockups-creator ##
-ADD . /src
-WORKDIR /src
-RUN npm install
+# Create Volume entry points
+############################
 
-## Tell Docker that this path is gonna be a real path on the Host
-VOLUME "/src/app/"
+VOLUME $DATA_DIR
 
-## Prepare Host keys for SSH connections
-RUN ssh-keygen -A
+# Copy required files and fix permissions
+#########################################
 
-## Start SSH Server
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+COPY Dockerfile_src/* /opt/
+
+# Create missing directories
+############################
+
+RUN mkdir -p $DATA_DIR
+
+# Set the work directory
+########################
+
+WORKDIR $DATA_DIR
+
+# Fix permissions
+#################
+
+RUN chmod 0644 * \
+    && chmod 0755 *.sh
+
+# Install required packages
+##############################
+RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed wget fontforge nodejs npm jre8-openjdk java-batik \
+    && npm install -g ttf2eot ttf2svg bower grunt-cli \
+    && wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /root \
+    && tar xzf /root/batik-bin-1.8.tar.gz -C /usr/share/java \
+    && rm /root/batik-bin-1.8.tar.gz \
+    && echo -e '#!/bin/bash\n\java -Djava.awt.headless=true -jar /usr/share/java/batik-1.8/batik-ttf2svg-1.8.jar "$@"\n' > /usr/local/bin/batik-ttf2svg \
+    && chmod 0755 /usr/local/bin/batik-ttf2svg \
+    && chown root:root /usr/local/bin/batik-ttf2svg
+
+# Cleanup
+#########
+
+RUN yes | pacman -Scc
+
+# Expose required ports
+#######################
+
+EXPOSE 8080
+
+# Set the entry point to init.sh
+###########################################
+
+ENTRYPOINT /opt/init.sh
