@@ -12,6 +12,6 @@ chown -R root:root $DATA_DIR
 # Start grunt process
 cd $DATA_DIR
 npm install -g
-bower install -g
+bower install -g --allow-root
 grunt build_deploy
 grunt server
