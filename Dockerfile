@@ -22,7 +22,8 @@ COPY Dockerfile_src/* /opt/
 # Create missing directories
 ############################
 
-RUN mkdir -p $DATA_DIR
+RUN mkdir -p $DATA_DIR \
+    && mkdir -p /opt
 
 # Set the work directory
 ########################
