@@ -28,7 +28,7 @@ RUN mkdir -p $DATA_DIR \
 # Set the work directory
 ########################
 
-WORKDIR $DATA_DIR
+WORKDIR /opt
 
 # Fix permissions
 #################
