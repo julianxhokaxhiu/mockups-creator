@@ -1,3 +1,0 @@
-#!/bin/bash
-docker build -t "jx/mockups-creator" .
-docker run -v $(pwd)/app:/src/app "jx/mockups-creator"
