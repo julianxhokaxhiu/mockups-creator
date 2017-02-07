@@ -40,9 +40,9 @@ RUN chmod 0644 * \
 ##############################
 RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed wget fontforge nodejs npm jre8-openjdk java-batik \
     && npm install -g ttf2eot ttf2svg bower grunt-cli \
-    && wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /root \
-    && tar xzf /root/batik-bin-1.8.tar.gz -C /usr/share/java \
-    && rm /root/batik-bin-1.8.tar.gz \
+    && wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /opt \
+    && tar xzf /opt/batik-bin-1.8.tar.gz -C /usr/share/java \
+    && rm /opt/batik-bin-1.8.tar.gz \
     && echo -e '#!/bin/bash\n\java -Djava.awt.headless=true -jar /usr/share/java/batik-1.8/batik-ttf2svg-1.8.jar "$@"\n' > /usr/local/bin/batik-ttf2svg \
     && chmod 0755 /usr/local/bin/batik-ttf2svg \
     && chown root:root /usr/local/bin/batik-ttf2svg
