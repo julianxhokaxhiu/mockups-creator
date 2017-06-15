@@ -21,7 +21,7 @@ script:
 - grunt build_deploy
 
 deploy:
-  local_dir: _dist/
+  local_dir: _release/
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
