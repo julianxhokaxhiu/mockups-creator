@@ -1,0 +1,29 @@
+sudo: required
+
+language: node_js
+node_js:
+  - "node"
+
+branches:
+  only:
+  - master
+
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -y fontforge openjdk-8-jre libbatik-java
+
+install:
+- npm install -g ttf2eot ttf2svg bower grunt-cli
+- npm install
+- bower install
+
+script:
+- grunt build_deploy
+
+deploy:
+  local_dir: _dist/
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
