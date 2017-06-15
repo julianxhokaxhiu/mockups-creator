@@ -26,4 +26,6 @@ fi
 grunt build_deploy
 
 # Start the HTTP server
-grunt server
+if [ "$1" != "--no-http-server" ]; then
+  grunt server
+fi
