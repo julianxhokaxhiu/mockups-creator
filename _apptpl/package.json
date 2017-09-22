@@ -21,7 +21,7 @@
     "grunt-contrib-imagemin": "*",
     "grunt-fontgen": "*",
     "grunt-rsync": "*",
-    "grunt-contrib-sass": "*",
+    "grunt-sass": "*",
     "grunt-tasty-swig": "julianxhokaxhiu/grunt-tasty-swig",
     "grunt-webfont": "*",
     "grunt-yui-compressor": "julianxhokaxhiu/grunt-yui-compressor#develop",
