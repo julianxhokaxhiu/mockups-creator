@@ -1,39 +1,38 @@
 {
-	"config" : {
-		"output" : {
-			"path" : "_release"
-		},
-		"livereload" : {
-			"port" : 35729,
-			"host" : "localhost"
-		},
-		"server" : {
-			"port" : -1
-		},
-		"deploy" : {
-			"path" : "/var/www",
-			"host" : "localhost"
-		},
-		"typo3" : {
-			"path" : "_typo3ext",
-			"suffix" : "_core"
-		}
-	},
-	"assets" : {
-		"fonts" : [
-			"bower_components/fontawesome/fonts/*",
-			"bower_components/ionicons/fonts/*",
-			"bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*"
-		],
-		"js" : [
-			"bower_components/modernizr/modernizr.js",
-			"bower_components/detectizr/dist/detectizr.js",
-			"bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
-      "bower_components/responsive-toolkit/dist/bootstrap-toolkit.js",
-			"tpl/js/*.js"
-		]
-	},
-	"data" : {
-		"foo" : "bar"
-	}
+  "config" : {
+    "output" : {
+      "path" : "_release"
+    },
+    "livereload" : {
+      "port" : 35729,
+      "host" : "localhost"
+    },
+    "server" : {
+      "port" : -1
+    },
+    "deploy" : {
+      "path" : "/var/www",
+      "host" : "localhost"
+    },
+    "typo3" : {
+      "path" : "_typo3ext",
+      "suffix" : "_core"
+    }
+  },
+  "assets" : {
+    "fonts" : [
+      "node_modules/font-awesome/fonts/*",
+      "node_modules/ionicons/dist/fonts/*"
+    ],
+    "js" : [
+      "node_modules/modernizr/modernizr.custom.js",
+      "node_modules/detectizr/dist/detectizr.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "node_modules/responsive-toolkit/dist/bootstrap-toolkit.js",
+      "tpl/js/*.js"
+    ]
+  },
+  "data" : {
+    "foo" : "bar"
+  }
 }
