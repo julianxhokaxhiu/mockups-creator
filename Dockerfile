@@ -9,6 +9,9 @@ ENV DATA_DIR /app
 # Configurable environment variables
 ####################################
 
+# Set to false to enable development mode
+ENV PRODUCTION true
+
 # Create Volume entry points
 ############################
 

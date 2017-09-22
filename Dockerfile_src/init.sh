@@ -17,10 +17,14 @@ if [ ! -d "$DATA_DIR/node_modules" ]; then
   npm install
 fi
 
-# Start the build for deployment
-grunt build_deploy
+# Check if we are running the docker in DEV mode
+if [ $PRODUCTION = true ]; then
+  # Build the mockup
+  grunt build_deploy
 
-# Start the HTTP server
-if [ "$1" != "--no-http-server" ]; then
+  # Serve it via HTTP
   grunt server
+else
+  # Build, Serve via HTTP and Watch for changes
+  grunt build
 fi
