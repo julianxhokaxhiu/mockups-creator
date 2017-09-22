@@ -6,5 +6,5 @@ docker run \
     --rm \
     -e "PRODUCTION=false" \
     -p 8080:8080 \
-    -v ".:/app" \
+    -v "$(pwd):/app" \
     julianxhokaxhiu/mockups-creator
