@@ -1,5 +1,3 @@
-> **DEPRECATED!** Use this project at your own risk. It will be no more maintained, and the Docker is just my last resort to give a proper environment for every single application kickstarted with this boilerplate. Please consider using [Hugo](https://gohugo.io/) as an alternative.
-
 mockups-creator v2
 ==================
 
