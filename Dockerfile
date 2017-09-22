@@ -39,7 +39,7 @@ RUN chmod 0644 * \
 # Install required packages
 ##############################
 RUN yes '' | pacman -Sy --noprogressbar --noconfirm --needed git wget fontforge nodejs npm jre8-openjdk java-batik \
-    && npm install -g ttf2eot ttf2svg bower grunt-cli \
+    && npm install -g ttf2eot ttf2svg grunt-cli \
     && wget http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/xmlgraphics/batik/binaries/batik-bin-1.8.tar.gz -P /opt \
     && tar xzf /opt/batik-bin-1.8.tar.gz -C /usr/share/java \
     && rm /opt/batik-bin-1.8.tar.gz \
