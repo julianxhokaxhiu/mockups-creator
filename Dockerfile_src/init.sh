@@ -25,6 +25,9 @@ if [ $PRODUCTION = true ]; then
   # Serve it via HTTP
   grunt server
 else
+  # Restore run.sh execution permissions
+  chmod +x run.sh
+
   # Build, Serve via HTTP and Watch for changes
   grunt build
 fi
