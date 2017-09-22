@@ -8,6 +8,7 @@
   "version": "0.0.1",
   "dependencies": {
     "grunt": "*",
+    "grunt-cli": "*",
     "grunt-run-grunt": "*",
     "grunt-contrib-copy": "*",
     "grunt-exec": "*",
