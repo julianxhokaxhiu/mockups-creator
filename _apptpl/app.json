@@ -8,7 +8,7 @@
       "host" : "localhost"
     },
     "server" : {
-      "port" : -1
+      "port" : 8080
     },
     "deploy" : {
       "path" : "/var/www",
