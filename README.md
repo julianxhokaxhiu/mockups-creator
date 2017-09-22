@@ -32,18 +32,17 @@ I love to be flexible and indipendent from the platforms. That's why I built thi
 - [Google Closure Compiler](https://developers.google.com/closure/compiler/) for Javascript
 - Auto-rebuild + Live Reload when editing swig, scss or js files
 - Static file server. No more depending on Apache, Nginx, etc.
-- Auto-update, of NPM packages and Bower packages, once a day on build
+- Auto-update, of NPM packages, once a day on build
 
 **Frontend**
 
-- [jQuery](https://jquery.com/) 2.x ( or 1.x for older browsers )
-- [Bootstrap](http://getbootstrap.com/) 3.x ( using bower to keep it aligned with latest updates )
-- [Fontawesome](http://fortawesome.github.io/Font-Awesome/) 4.x ( using bower to keep it aligned with latest updates )
-- [Ion Icons](http://ionicons.com/) 2.x ( using bower to keep it aligned with latest updates )
+- [jQuery](https://jquery.com/) 3.x
+- [Bootstrap](http://getbootstrap.com/) 4.x ( using NPM to keep it aligned with latest updates )
+- [Fontawesome](http://fortawesome.github.io/Font-Awesome/) 4.x ( using NPM to keep it aligned with latest updates )
+- [Ion Icons](http://ionicons.com/) 3.x ( using NPM to keep it aligned with latest updates )
 - [Modernizr](http://modernizr.com/) + [Detectizr](https://github.com/barisaydinoglu/Detectizr)
 - [bootstrap-toolkit](https://github.com/maciej-gurban/responsive-bootstrap-toolkit) media-queries for Javascript
-- Customizable [bower.json](https://github.com/julianxhokaxhiu/mockups-creator/blob/master/_apptpl/bower.json).
-- Default template ( ready for IE8+, Chrome, Firefox, Safari, iOS, Android, etc. ) using the most awesome techniques out there to simply the work for you :)
+- Default template ( ready for IE10+, Chrome, Firefox, Safari, iOS, Android, etc. ) using the most awesome techniques out there to simplify the work for you :)
 
 **Deploy**
 
