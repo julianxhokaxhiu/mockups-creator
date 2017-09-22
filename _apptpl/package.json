@@ -3,6 +3,7 @@
   "description": "A NodeJS App that creates static HTML mockups using Grunt",
   "version": "0.0.1",
   "dependencies": {
+    "bower": "*",
     "grunt": "*",
     "grunt-cli": "*",
     "grunt-autoprefixer": "*",
