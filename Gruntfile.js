@@ -52,7 +52,6 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'app/<%= appName %>/bower.json': ['app/<%= appName %>/bower.json'],
           'app/<%= appName %>/package.json': ['app/<%= appName %>/package.json'],
           'app/<%= appName %>/_typo3/package.json': ['app/<%= appName %>/_typo3/package.json'],
         }
@@ -61,10 +60,6 @@ module.exports = function(grunt) {
     exec: {
       npm: {
         cmd: 'npm install',
-        cwd: 'app/<%= appName %>'
-      },
-      bower: {
-        cmd: 'bower install',
         cwd: 'app/<%= appName %>'
       }
     }

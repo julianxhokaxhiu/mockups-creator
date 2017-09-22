@@ -348,11 +348,11 @@ module.exports = function(grunt) {
             src: ['*.js'],
             dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/Resources/Private/JavaScript/'
           },
-          // Bower + App configuration
+          // App configuration
           {
             expand: true,
             flatten: true,
-            src: ['app.json', 'bower.json', 'package.json'],
+            src: ['app.json', 'package.json'],
             dest: '<%= app.config.typo3.path %>/<%= pkg.name %><%= app.config.typo3.suffix %>/'
           },
           /// Typo3 related stuff
@@ -423,22 +423,15 @@ module.exports = function(grunt) {
       npm_update: {
         cmd: 'npm update'
       },
-      bower_update: {
-        cmd: 'bower update'
-      },
       npm_install: {
         cmd: 'npm install'
-      },
-      bower_install: {
-        cmd: 'bower install'
       }
     },
     periodic: {
       update: {
         when: 'daily',
         tasks: [
-          'exec:npm_update',
-          'exec:bower_update'
+          'exec:npm_update'
         ]
       },
       npm_install: {
@@ -449,16 +442,6 @@ module.exports = function(grunt) {
         ],
         files: [{
           src: ['package.json']
-        }]
-      },
-      bower_install: {
-        when: 'newer',
-        tasks: [
-          'exec:bower_install',
-          'exec:bower_update'
-        ],
-        files: [{
-          src: ['bower.json']
         }]
       }
     }
