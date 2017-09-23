@@ -17,6 +17,13 @@
     "typo3" : {
       "path" : "_typo3ext",
       "suffix" : "_core"
+    },
+    "modernizr": {
+      "tests": [],
+      "customTests": [],
+      "options": [
+        "setClasses"
+      ]
     }
   },
   "assets" : {

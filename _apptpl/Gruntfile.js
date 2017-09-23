@@ -220,6 +220,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    modernizr: {
+      dist: {
+        crawl: false,
+        customTests: '<%= app.config.modernizr.customTests %>',
+        dest: 'node_modules/modernizr/modernizr.custom.js',
+        tests: '<%= app.config.modernizr.tests %>',
+        options: '<%= app.config.modernizr.options %>',
+        uglify: false
+      }
+    },
     imagemin: {
       build: {
         files: [{
@@ -485,6 +495,7 @@ module.exports = function(grunt) {
         'webfont',
         'concat:webfonts',
         'sass',
+        'modernizr:dist',
         'concat:js',
         'tasty_swig:build',
         'copy:resources',
@@ -517,6 +528,7 @@ module.exports = function(grunt) {
       ]);
     } else if (watchTask == 'js') {
       tasks = tasks.concat([
+        'modernizr:dist',
         'concat:js',
         'copy:resources',
         'copy:deploy',
