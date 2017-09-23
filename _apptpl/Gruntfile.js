@@ -281,7 +281,11 @@ module.exports = function(grunt) {
               '*.scss'
             ],
             dest: 'tpl/scss/'
-          },
+          }
+        ]
+      },
+      resources: {
+        files: [
           // The project resource files
           {
             expand: true,
@@ -395,6 +399,14 @@ module.exports = function(grunt) {
         tasks: [
           'rebuild:js'
         ]
+      },
+      resources: {
+        files: [
+          'rsc/**/*'
+        ],
+        tasks: [
+          'copy:resources'
+        ]
       }
     },
     rsync: {
@@ -475,6 +487,7 @@ module.exports = function(grunt) {
         'sass',
         'concat:js',
         'tasty_swig:build',
+        'copy:resources',
         'copy:deploy',
         'copy:build',
         'autoprefixer:build',
@@ -489,6 +502,7 @@ module.exports = function(grunt) {
     } else if (watchTask == 'html') {
       tasks = tasks.concat([
         'tasty_swig:build',
+        'copy:resources',
         'copy:deploy',
         'copy:build'
       ]);
@@ -496,6 +510,7 @@ module.exports = function(grunt) {
       tasks = tasks.concat([
         'clean:cssFiles',
         'sass',
+        'copy:resources',
         'copy:deploy',
         'copy:build',
         'autoprefixer:build'
@@ -503,6 +518,7 @@ module.exports = function(grunt) {
     } else if (watchTask == 'js') {
       tasks = tasks.concat([
         'concat:js',
+        'copy:resources',
         'copy:deploy',
         'copy:build'
       ]);
@@ -521,6 +537,7 @@ module.exports = function(grunt) {
     'cssmin',
     'closurecompiler',
     'tasty_swig:deploy',
+    'copy:resources',
     'copy:deploy',
     'autoprefixer:deploy',
     'imagemin',
